@@ -1,34 +1,171 @@
+/* Base Styles */
 html, body {
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden;
-    cursor: url('./images/pointer.png'), auto;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    cursor: pointer;
 }
 
+/* Canvas Styling - Updated Background */
 canvas {
     width: 100%;
-    height: auto;
-    background: #111;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a1a 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
+/* Photo Container Styling */
+.photo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.photo-container.show {
+    opacity: 1;
+}
+
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Music Control Button */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 105, 180, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-control:hover {
+    background: rgba(255, 105, 180, 1);
+    transform: scale(1.1);
+}
+
+/* Hide Audio Element */
+audio {
+    display: none;
+}
+
+/* Valentine Button - Updated Design */
 #valentinesButton {
     display: none;
-    position: absolute;
-    background-color: #2d2dff;
-    border: 2px solid #2d2dff;
+    position: fixed;
+    background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
+    border: none;
     color: #fff;
     cursor: pointer;
-    height: 50px;
-    font-size: 16px;
+    padding: 15px 30px;
+    font-size: 18px;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    border-radius: 10px;
-    top: calc(50% + 150px); /* Adjust based on canvas height and text position */
+    border-radius: 50px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  }
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 23, 68, 0.4);
+    z-index: 1000;
+    animation: pulse 2s infinite;
+}
 
-  #valentinesButton:hover {
-    background-color: #1f1faa;
-    color: #eee;
+#valentinesButton:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 8px 30px rgba(255, 23, 68, 0.6);
+}
+
+/* Pulse Animation for Button */
+@keyframes pulse {
+    0% { 
+        box-shadow: 0 5px 20px rgba(255, 23, 68, 0.4);
+        transform: translateX(-50%) scale(1);
+    }
+    50% { 
+        box-shadow: 0 5px 30px rgba(255, 23, 68, 0.8);
+        transform: translateX(-50%) scale(1.05);
+    }
+    100% { 
+        box-shadow: 0 5px 20px rgba(255, 23, 68, 0.4);
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .photo-container {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .music-control {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    #valentinesButton {
+        padding: 12px 25px;
+        font-size: 16px;
+        bottom: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    #valentinesButton {
+        padding: 10px 20px;
+        font-size: 14px;
+        bottom: 60px;
+    }
+}
+
+/* Additional Effects */
+.photo-container:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Custom scrollbar (if needed) */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Fallback for browsers that don't support gradients */
+canvas {
+    background-color: #111;
 }

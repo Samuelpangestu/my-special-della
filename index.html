@@ -1,16 +1,884 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content="https://raw.githubusercontent.com/sojijr/valentine-website/main/public/images/favicon.png">
-    <link rel="icon" href="public/images/favicon.png" type="image/x-icon" />  
-    <title>Happy Valentine's Day</title>
-    <link rel="stylesheet" href="public/style.css">
-  </head>
-  <body>
+    <meta property="og:title" content="Untuk Della yang Spesial">
+    <meta property="og:description" content="Kamu spesial di hatiku">
+    <meta property="og:image" content="https://i.imgur.com/zwk0Pbq.jpeg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>" type="image/svg+xml" />  
+    <title>Untuk Della yang Spesial ❤️</title>
+    
+    <style>
+        /* FORCE FULLSCREEN CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            width: 100vw !important;
+            height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            cursor: pointer;
+            background: #000 !important;
+            position: relative;
+        }
+
+        canvas {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a1a 100%) !important;
+            z-index: 1 !important;
+            display: block !important;
+        }
+
+        /* SPLASH SCREEN - SIMPLE */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a1a 0%, #2a1a2a 50%, #1a0a2a 100%);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: opacity 1s ease-out;
+        }
+
+        .splash-screen.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+            font-weight: bold;
+        }
+
+        .splash-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .start-button {
+            background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+            animation: pulseGlow 2s infinite;
+            font-weight: bold;
+        }
+
+        .start-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(255, 23, 68, 0.6);
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
+            50% { box-shadow: 0 8px 35px rgba(255, 23, 68, 0.8); }
+            100% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
+        }
+
+        /* MUSIC CONTROLS */
+        .music-control {
+            position: fixed !important;
+            top: 20px !important;
+            right: 20px !important;
+            z-index: 1000 !important;
+            background: rgba(255, 105, 180, 0.9) !important;
+            border: none;
+            border-radius: 50%;
+            width: 60px !important;
+            height: 60px !important;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block !important;
+        }
+
+        .music-control:hover {
+            background: rgba(255, 105, 180, 1) !important;
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            font-weight: bold;
+        }
+
+        .music-info.show {
+            opacity: 1;
+        }
+
+        audio {
+            display: none;
+        }
+
+        /* SURPRISE PHOTO GALLERY (Hidden initially) */
+        .surprise-gallery {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 15 !important;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1.5s ease-in-out;
+            pointer-events: none;
+        }
+
+        .surprise-gallery.show {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .surprise-photo {
+            position: absolute;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+            transition: all 0.5s ease;
+            opacity: 0;
+            animation: surprisePhotoIn 1.5s ease forwards;
+        }
+
+        .surprise-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .surprise-photo:hover {
+            transform: scale(1.15);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.8);
+            z-index: 25;
+        }
+
+        /* Different circular photo sizes and positions */
+        .surprise-1 {
+            width: 160px;
+            height: 160px;
+            top: 12%;
+            left: 8%;
+            animation-delay: 0.3s;
+        }
+
+        .surprise-2 {
+            width: 200px;
+            height: 200px;
+            top: 15%;
+            right: 10%;
+            animation-delay: 0.6s;
+        }
+
+        .surprise-3 {
+            width: 140px;
+            height: 140px;
+            bottom: 25%;
+            left: 12%;
+            animation-delay: 0.9s;
+        }
+
+        .surprise-4 {
+            width: 180px;
+            height: 180px;
+            bottom: 20%;
+            right: 8%;
+            animation-delay: 1.2s;
+        }
+
+        .surprise-5 {
+            width: 120px;
+            height: 120px;
+            top: 50%;
+            left: 5%;
+            animation-delay: 1.5s;
+        }
+
+        .surprise-6 {
+            width: 170px;
+            height: 170px;
+            top: 55%;
+            right: 15%;
+            animation-delay: 1.8s;
+        }
+
+        @keyframes surprisePhotoIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(180deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* BEAT-SYNCED ANIMATIONS */
+        @keyframes beatSyncButton {
+            0% { 
+                background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
+                box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
+                transform: translateX(-50%) scale(1);
+            }
+            25% { 
+                background: linear-gradient(45deg, #ff2955, #ec407a, #ab47bc);
+                box-shadow: 0 10px 30px rgba(255, 23, 68, 0.7);
+                transform: translateX(-50%) scale(1.02);
+            }
+            50% { 
+                background: linear-gradient(45deg, #ff4569, #f06292, #ba68c8);
+                box-shadow: 0 12px 35px rgba(255, 23, 68, 0.8);
+                transform: translateX(-50%) scale(1.05);
+            }
+            75% { 
+                background: linear-gradient(45deg, #ff2955, #ec407a, #ab47bc);
+                box-shadow: 0 10px 30px rgba(255, 23, 68, 0.7);
+                transform: translateX(-50%) scale(1.02);
+            }
+            100% { 
+                background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
+                box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        @keyframes successPulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
+            50% { box-shadow: 0 8px 35px rgba(255, 23, 68, 0.8); }
+            100% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
+        }
+
+        /* SURPRISE TEXT OVERLAY */
+        .surprise-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 1);
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+            max-width: 90%;
+        }
+
+        .surprise-text.show {
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .splash-title {
+                font-size: 2.2rem;
+            }
+
+            .splash-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .start-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+
+            .music-control {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 16px;
+            }
+
+            .surprise-text {
+                font-size: 1.6rem;
+            }
+
+            /* Smaller circular photos for mobile */
+            .surprise-1 { width: 120px; height: 120px; top: 8%; left: 5%; }
+            .surprise-2 { width: 140px; height: 140px; top: 12%; right: 5%; }
+            .surprise-3 { width: 100px; height: 100px; bottom: 20%; left: 8%; }
+            .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; }
+            .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; }
+            .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; }
+        }
+
+        @media (max-width: 480px) {
+            .splash-title {
+                font-size: 1.8rem;
+            }
+
+            .splash-subtitle {
+                font-size: 1rem;
+            }
+
+            .surprise-text {
+                font-size: 1.3rem;
+            }
+
+            /* Even smaller for small mobile */
+            .surprise-1 { width: 90px; height: 90px; }
+            .surprise-2 { width: 110px; height: 110px; }
+            .surprise-3 { width: 80px; height: 80px; }
+            .surprise-4 { width: 100px; height: 100px; }
+            .surprise-5 { width: 70px; height: 70px; }
+            .surprise-6 { width: 85px; height: 85px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NO BROWSER WARNING DIALOG -->
+    
+    <!-- SIMPLE SPLASH SCREEN -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-title">💕 Untuk Della 💕</div>
+        <div class="splash-subtitle">Klik untuk memulai</div>
+        <button class="start-button" id="startButton">Mulai ❤️</button>
+    </div>
+
     <canvas id="starfield"></canvas>
-    <button id="valentinesButton">Click Me! ❤</button>
-    <script src="script.js"></script>
-  </body>
+
+    <!-- SURPRISE PHOTO GALLERY (Hidden) -->
+    <div class="surprise-gallery" id="surpriseGallery">
+        <div class="surprise-photo surprise-1">
+            <img src="https://i.imgur.com/zwk0Pbq.jpeg" alt="Memory 1">
+        </div>
+        <div class="surprise-photo surprise-2">
+            <img src="https://i.imgur.com/zwk0Pbq.jpeg" alt="Memory 2">
+        </div>
+        <div class="surprise-photo surprise-3">
+            <img src="https://i.imgur.com/zwk0Pbq.jpeg" alt="Memory 3">
+        </div>
+        <div class="surprise-photo surprise-4">
+            <img src="https://i.imgur.com/zwk0Pbq.jpeg" alt="Memory 4">
+        </div>
+        <div class="surprise-photo surprise-5">
+            <img src="https://i.imgur.com/zwk0Pbq.jpeg" alt="Memory 5">
+        </div>
+        <div class="surprise-photo surprise-6">
+            <img src="https://i.imgur.com/zwk0Pbq.jpeg" alt="Memory 6">
+        </div>
+    </div>
+
+    <!-- SURPRISE TEXT OVERLAY -->
+    <div class="surprise-text" id="surpriseText">
+        💕 Semua moment indah kita bersama 💕
+    </div>
+    
+    <!-- MUSIC CONTROLS -->
+    <button class="music-control" id="musicControl" onclick="toggleMusic()">🎵</button>
+    <div class="music-info" id="musicInfo">🎵 Yung Kai - Blue</div>
+    
+    <!-- AUDIO -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="assets/yungkai.mp3" type="audio/mpeg">
+        <source src="assets/yung-kai-blue.mp3" type="audio/mpeg">
+        <source src="https://www.soundjay.com/misc/sounds-for-free/romantic-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        console.log("🚀 Starting Valentine website for Della...");
+        
+        // GLOBAL VARIABLES
+        let musicPlaying = false;
+        let animationStarted = false;
+        let startTime = 0;
+        
+        // SPLASH SCREEN HANDLER - NO BROWSER WARNING
+        document.getElementById('startButton').addEventListener('click', function() {
+            console.log("🎬 Starting experience...");
+            
+            const splash = document.getElementById('splashScreen');
+            splash.classList.add('hide');
+            
+            startMusicAndAnimation();
+            
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 1000);
+        });
+
+        function startMusicAndAnimation() {
+            const music = document.getElementById('backgroundMusic');
+            const musicControl = document.getElementById('musicControl');
+            const musicInfo = document.getElementById('musicInfo');
+            
+            music.play().then(() => {
+                console.log("🎵 Music started successfully!");
+                musicControl.textContent = '⏸️';
+                musicPlaying = true;
+                
+                musicInfo.classList.add('show');
+                setTimeout(() => {
+                    musicInfo.classList.remove('show');
+                }, 3000);
+                
+            }).catch(e => {
+                console.error("🎵 Music failed to start:", e);
+                musicControl.textContent = '❌';
+            });
+            
+            if (!animationStarted) {
+                startAnimation();
+                animationStarted = true;
+                startTime = Date.now();
+            }
+        }
+
+        // CANVAS SETUP
+        function resizeCanvas() {
+            const canvas = document.getElementById("starfield");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.width = window.innerWidth + 'px';
+            canvas.style.height = window.innerHeight + 'px';
+        }
+
+        var canvas = document.getElementById("starfield");
+        if (!canvas) {
+            console.error("❌ Canvas not found!");
+        }
+        
+        resizeCanvas();
+
+        var context = canvas.getContext("2d");
+        var stars = 500;
+        var colorrange = [0, 60, 240, 300];
+        var starArray = [];
+
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function createStars() {
+            starArray = [];
+            for (var i = 0; i < stars; i++) {
+                var x = Math.random() * canvas.width;
+                var y = Math.random() * canvas.height;
+                var radius = Math.random() * 1.5;
+                var hue = colorrange[getRandom(0, colorrange.length - 1)];
+                var sat = getRandom(50, 100);
+                var opacity = Math.random();
+                starArray.push({ x, y, radius, hue, sat, opacity });
+            }
+            console.log("✅ Created", stars, "stars");
+        }
+
+        createStars();
+
+        var currentTextIndex = 0;
+        var textOpacity = 0;
+        var isTextFadingIn = false;
+        var isTextFadingOut = false;
+        var buttonCreated = false;
+
+        const surpriseGallery = document.getElementById("surpriseGallery");
+        const surpriseText = document.getElementById("surpriseText");
+
+        function toggleMusic() {
+            const music = document.getElementById('backgroundMusic');
+            const musicControl = document.getElementById('musicControl');
+            
+            if (musicPlaying) {
+                music.pause();
+                musicControl.textContent = '🎵';
+                musicPlaying = false;
+                console.log("🎵 Music paused");
+            } else {
+                music.play().then(() => {
+                    musicControl.textContent = '⏸️';
+                    musicPlaying = true;
+                    console.log("🎵 Music playing");
+                }).catch(e => {
+                    console.log("🎵 Music play failed:", e);
+                    alert("Tidak bisa memutar musik 🎵");
+                });
+            }
+        }
+
+        function drawStars() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (var i = 0; i < starArray.length; i++) {
+                var star = starArray[i];
+                context.beginPath();
+                context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                context.fillStyle = "hsla(" + star.hue + ", " + star.sat + "%, 88%, " + star.opacity + ")";
+                context.fill();
+            }
+        }
+
+        function updateStars() {
+            for (var i = 0; i < starArray.length; i++) {
+                if (Math.random() > 0.99) {
+                    starArray[i].opacity = Math.random();
+                }
+            }
+        }
+
+        function drawTextWithLineBreaks(lines, x, y, fontSize, lineHeight) {
+            lines.forEach((line, index) => {
+                var currentY = y + index * (fontSize + lineHeight);
+                context.strokeText(line, x, currentY);
+                context.fillText(line, x, currentY);
+            });
+        }
+
+        function getElapsedTime() {
+            return (Date.now() - startTime) / 1000; // seconds
+        }
+
+        function drawText() {
+            if (!animationStarted) return;
+
+            const elapsed = getElapsedTime();
+            var fontSize = Math.min(42, window.innerWidth / 18);
+            var lineHeight = 15;
+
+            context.font = `bold ${fontSize}px Comic Sans MS`;
+            context.textAlign = "center";
+            
+            context.strokeStyle = "rgba(0, 0, 0, 0.9)";
+            context.lineWidth = 4;
+            context.shadowColor = "rgba(255, 105, 180, 1)";
+            context.shadowBlur = 30;
+            context.shadowOffsetX = 0;
+            context.shadowOffsetY = 0;
+
+            // WORD-BY-WORD FADE TIMELINE with 1-second fade in/out
+            let currentText = "";
+            let targetOpacity = 0;
+            let fadeSpeed = 1.0; // 1 second fade (60fps = 0.016 per frame)
+
+            // Enhanced timeline with precise word timing
+            if (elapsed >= 0 && elapsed < 3) {
+                targetOpacity = 0;
+            } 
+            else if (elapsed >= 3 && elapsed < 4) {
+                // 3-4s: Fade in "Hai del!"
+                currentText = "Hai del!";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 4 && elapsed < 7) {
+                // 4-7s: Hold "Hai del!"
+                currentText = "Hai del!";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 7 && elapsed < 8) {
+                // 7-8s: Fade out "Hai del!", fade in longer message
+                currentText = "Semoga kamu sedang (dan selalu) berbahagia saat baca ini";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 8 && elapsed < 12) {
+                // 8-12s: Hold happiness message
+                currentText = "Semoga kamu sedang (dan selalu) berbahagia saat baca ini";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 12 && elapsed < 13) {
+                // 12-13s: Fade transition
+                currentText = "Izinkan aku bilang sesuatu ke kamu";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 13 && elapsed < 17) {
+                // 13-17s: Hold permission message
+                currentText = "Izinkan aku bilang sesuatu ke kamu";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 17 && elapsed < 18) {
+                // 17-18s: Fade transition
+                currentText = "everyday day I cannot believe how lucky I am";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 18 && elapsed < 22) {
+                // 18-22s: Hold lucky message
+                currentText = "everyday day I cannot believe how lucky I am";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 22 && elapsed < 23) {
+                // 22-23s: Fade transition to stars
+                currentText = "amongst trillions and trillions of stars";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 23 && elapsed < 25) {
+                // 23-25s: Hold stars message
+                currentText = "amongst trillions and trillions of stars";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 25 && elapsed < 26) {
+                // 25-26s: Add second line
+                currentText = "amongst trillions and trillions of stars\n\nover billions of years";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 26 && elapsed < 30) {
+                // 26-30s: Hold complete stars message
+                currentText = "amongst trillions and trillions of stars\n\nover billions of years";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 30 && elapsed < 31) {
+                // 30-31s: Fade to life message
+                currentText = "to be alive, and to get to spend this life with you";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 31 && elapsed < 34) {
+                // 31-34s: Hold life message
+                currentText = "to be alive, and to get to spend this life with you";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 34 && elapsed < 35) {
+                // 34-35s: Add unlikely part
+                currentText = "to be alive, and to get to spend this life with you\n\nis so incredibly, unfathomably unlikely";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 35 && elapsed < 39) {
+                // 35-39s: Hold complete unlikely message
+                currentText = "to be alive, and to get to spend this life with you\n\nis so incredibly, unfathomably unlikely";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 39 && elapsed < 40) {
+                // 39-40s: Fade to impossible chance
+                currentText = "and yet here I am to get the impossible";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 40 && elapsed < 42) {
+                // 40-42s: Hold impossible message
+                currentText = "and yet here I am to get the impossible";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 42 && elapsed < 43) {
+                // 42-43s: Add chance part
+                currentText = "and yet here I am to get the impossible\n\nchance to get to know you";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 43 && elapsed < 47) {
+                // 43-47s: Hold complete chance message
+                currentText = "and yet here I am to get the impossible\n\nchance to get to know you";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 47 && elapsed < 48) {
+                // 47-48s: Fade to feelings (emotional climax)
+                currentText = "I have feelings for you";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 48 && elapsed < 50) {
+                // 48-50s: Hold feelings
+                currentText = "I have feelings for you";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 50 && elapsed < 51) {
+                // 50-51s: Add more than part
+                currentText = "I have feelings for you, more than\n\nall the time and space in the universe can contain";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 51 && elapsed < 55) {
+                // 51-55s: Hold complete feelings message
+                currentText = "I have feelings for you, more than\n\nall the time and space in the universe can contain";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 55 && elapsed < 56) {
+                // 55-56s: Fade to final message
+                currentText = "You mean a lot to me";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 56 && elapsed < 60) {
+                // 56-60s: Hold first "You mean a lot"
+                currentText = "You mean a lot to me";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 60 && elapsed < 61) {
+                // 60-61s: Brief dim for emphasis
+                currentText = "You mean a lot to me";
+                targetOpacity = 0.4;
+            }
+            else if (elapsed >= 61) {
+                // 61s+: Final bright emphasis + button
+                currentText = "You mean a lot to me";
+                targetOpacity = 1;
+                
+                if (!buttonCreated) {
+                    createButton();
+                    buttonCreated = true;
+                }
+            }
+
+            // SMOOTH 1-SECOND FADE LOGIC
+            const fadeStep = 0.016; // 60fps smooth fade
+            if (Math.abs(textOpacity - targetOpacity) > fadeStep) {
+                if (textOpacity < targetOpacity) {
+                    textOpacity = Math.min(targetOpacity, textOpacity + fadeStep);
+                } else {
+                    textOpacity = Math.max(targetOpacity, textOpacity - fadeStep);
+                }
+            } else {
+                textOpacity = targetOpacity;
+            }
+
+            // BEAT-SYNCHRONIZED PULSE EFFECT
+            const beatPulse = Math.sin(elapsed * 1.5) * 0.05 + 1; // Subtle pulse
+            const finalOpacity = textOpacity * beatPulse;
+
+            // DRAW TEXT WITH ENHANCED EFFECTS
+            if (finalOpacity > 0 && currentText) {
+                context.fillStyle = `rgba(255, 105, 180, ${finalOpacity})`;
+                
+                // Add breathing effect to shadow
+                context.shadowBlur = 30 + Math.sin(elapsed * 2) * 8;
+                
+                if (currentText.includes('\n')) {
+                    const lines = currentText.split('\n').filter(line => line.trim());
+                    drawTextWithLineBreaks(lines, canvas.width / 2, canvas.height / 2 - (lines.length * fontSize / 4), fontSize, lineHeight);
+                } else {
+                    context.strokeText(currentText, canvas.width / 2, canvas.height / 2);
+                    context.fillText(currentText, canvas.width / 2, canvas.height / 2);
+                }
+            }
+
+            // Reset shadow
+            context.shadowColor = "transparent";
+            context.shadowBlur = 0;
+            context.shadowOffsetX = 0;
+            context.shadowOffsetY = 0;
+        }
+
+        function createButton() {
+            console.log("🔧 Creating surprise button with beat sync");
+            
+            const newButton = document.createElement("button");
+            newButton.id = "valentinesButton";
+            newButton.textContent = "Klik untuk Kejutan! ❤️";
+            
+            newButton.style.cssText = `
+                position: fixed !important;
+                bottom: 80px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0) !important;
+                color: white !important;
+                border: none !important;
+                padding: 20px 40px !important;
+                font-size: 20px !important;
+                font-family: "Comic Sans MS", cursive, sans-serif !important;
+                border-radius: 50px !important;
+                cursor: pointer !important;
+                z-index: 99999 !important;
+                min-width: 280px !important;
+                height: 60px !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 0 !important;
+                font-weight: bold !important;
+                text-align: center !important;
+                line-height: 1 !important;
+                box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6) !important;
+                animation: beatSyncButton 2s infinite !important;
+                transition: opacity 1s ease !important;
+            `;
+            
+            // Fade in button smoothly
+            setTimeout(() => {
+                newButton.style.opacity = "1";
+            }, 100);
+            
+            newButton.addEventListener("click", (event) => {
+                console.log("❤️ Beat-synced surprise button clicked!", event);
+                
+                if (newButton.textContent === "Klik untuk Kejutan! ❤️") {
+                    newButton.textContent = "💕 Terima kasih sudah mengklik! 🥰";
+                    newButton.style.background = "linear-gradient(45deg, #4caf50, #8bc34a, #cddc39)";
+                    newButton.style.animation = "successPulse 0.5s ease";
+                    
+                    // Show surprise gallery immediately (NO ALERTS)
+                    setTimeout(() => {
+                        surpriseGallery.classList.add('show');
+                        console.log("🎉 Beat-synced surprise gallery activated!");
+                    }, 500);
+                    
+                    // Show sweet text overlay
+                    setTimeout(() => {
+                        surpriseText.innerHTML = "💕 Semua moment indah kita bersama 💕";
+                        surpriseText.classList.add('show');
+                        
+                        // Hide text after 4 seconds
+                        setTimeout(() => {
+                            surpriseText.classList.remove('show');
+                        }, 4000);
+                    }, 1000);
+                }
+            });
+            
+            document.body.appendChild(newButton);
+            console.log("✅ Beat-synced surprise button created (no alerts)");
+        }
+
+        function draw() {
+            drawStars();
+            updateStars();
+            drawText();
+            requestAnimationFrame(draw);
+        }
+
+        function startAnimation() {
+            console.log("✅ Starting animation...");
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener("resize", function () {
+            resizeCanvas();
+            createStars();
+        });
+
+        console.log("✅ Valentine website loaded - waiting for user interaction");
+    </script>
+</body>
 </html>
