@@ -557,15 +557,15 @@
             context.shadowOffsetX = 0;
             context.shadowOffsetY = 0;
 
-            // NEW TIMELINE: 2s fade in + 5s display + 2s fade out = 9s per message
+            // TIMELINE: 2s fade in + 5s display + 2s fade out = 9s per message
             let currentText = "";
             let targetOpacity = 0;
 
             if (elapsed >= 0 && elapsed < 6) {
                 targetOpacity = 0;
             } 
-            // Message 1: Hai del! (6-15s = 2s fade in + 5s display + 2s fade out)
-            else if (elapsed >= 4 && elapsed < 8) {
+            // Message 1: Hai del! (6-15s)
+            else if (elapsed >= 3 && elapsed < 8) {
                 currentText = "Hai del!";
                 targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
             }
@@ -722,43 +722,31 @@
             }
             // Message 13: Walking invitation (117-126s)
             else if (elapsed >= 117 && elapsed < 119) {
-                currentText = "makanya itu yuk kita jalan :)";
+                currentText = "makanya itu yuk kita jalan :)\n\nwhatsapp aku kalau kamu mau!";
                 targetOpacity = Math.min(1, (elapsed - 117) / 2); // 2s fade in
             }
             else if (elapsed >= 119 && elapsed < 124) {
-                currentText = "makanya itu yuk kita jalan :)";
+                currentText = "makanya itu yuk kita jalan :)\n\nwhatsapp aku kalau kamu mau!";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 124 && elapsed < 126) {
-                currentText = "makanya itu yuk kita jalan :)";
+                currentText = "makanya itu yuk kita jalan :)\n\nwhatsapp aku kalau kamu mau!";
                 targetOpacity = Math.max(0, 1 - (elapsed - 124) / 2); // 2s fade out
             }
-            else if (elapsed >= 126) {
-                // Show button after all messages
-                if (!buttonCreated) {
-                    createButton();
-                    buttonCreated = true;
-                }
-                targetOpacity = 0;
+            // Message 14: Signature (126-135s)
+            else if (elapsed >= 126 && elapsed < 128) {
+                currentText = "Your sincere Samuel";
+                targetOpacity = Math.min(1, (elapsed - 126) / 2); // 2s fade in
             }
-            else if (elapsed >= 94 && elapsed < 97) {
-                currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
-                targetOpacity = Math.max(0, 1 - (elapsed - 94) / 3); // 3s fade out
+            else if (elapsed >= 128 && elapsed < 133) {
+                currentText = "Your sincere Samuel";
+                targetOpacity = 1; // 5s display
             }
-            // Message 13: Walking invitation (97-105s)
-            else if (elapsed >= 97 && elapsed < 100) {
-                currentText = "makanya itu yuk kita jalan :)";
-                targetOpacity = Math.min(1, (elapsed - 97) / 3); // 3s fade in
+            else if (elapsed >= 133 && elapsed < 135) {
+                currentText = "Your sincere Samuel";
+                targetOpacity = Math.max(0, 1 - (elapsed - 133) / 2); // 2s fade out
             }
-            else if (elapsed >= 100 && elapsed < 102) {
-                currentText = "makanya itu yuk kita jalan :)";
-                targetOpacity = 1; // 2s hold
-            }
-            else if (elapsed >= 102 && elapsed < 105) {
-                currentText = "makanya ito yuk kita jalan :)\n\n whatsapp aku kalau kamu mau!";
-                targetOpacity = Math.max(0, 1 - (elapsed - 102) / 3); // 3s fade out
-            }
-            else if (elapsed >= 105) {
+            else if (elapsed >= 135) {
                 // Show button after all messages
                 if (!buttonCreated) {
                     createButton();
