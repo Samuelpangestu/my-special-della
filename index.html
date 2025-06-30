@@ -565,7 +565,7 @@
                 targetOpacity = 0;
             } 
             // Message 1: Hai del! (6-15s = 2s fade in + 5s display + 2s fade out)
-            else if (elapsed >= 6 && elapsed < 8) {
+            else if (elapsed >= 5 && elapsed < 8) {
                 currentText = "Hai del!";
                 targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
             }
@@ -644,15 +644,15 @@
             }
             // Message 7: Life message (60-69s)
             else if (elapsed >= 60 && elapsed < 62) {
-                currentText = "to be alive, and to get\n\nto spend this life with you";
+                currentText = "to be alive, and to get\n\nto share moments like this with you";
                 targetOpacity = Math.min(1, (elapsed - 60) / 2); // 2s fade in
             }
             else if (elapsed >= 62 && elapsed < 67) {
-                currentText = "to be alive, and to get\n\nto spend this life with you";
+                currentText = "to be alive, and to get\n\nto share moments like this with you";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 67 && elapsed < 69) {
-                currentText = "to be alive, and to get\n\nto spend this life with you";
+                currentText = "to be alive, and to get\n\nto share moments like this with you";
                 targetOpacity = Math.max(0, 1 - (elapsed - 67) / 2); // 2s fade out
             }
             // Message 8: Unlikely message (69-78s)
