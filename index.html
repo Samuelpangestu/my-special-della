@@ -557,164 +557,225 @@
             context.shadowOffsetX = 0;
             context.shadowOffsetY = 0;
 
-            // NEW TIMELINE WITH 3 SECOND FADE IN/OUT
+            // NEW TIMELINE: 2s fade in + 5s display + 2s fade out = 9s per message
             let currentText = "";
             let targetOpacity = 0;
 
-            if (elapsed >= 0 && elapsed < 2) {
+            if (elapsed >= 0 && elapsed < 6) {
                 targetOpacity = 0;
             } 
-            // Message 1: Hai del! (2-8s = 3s fade in + 2s hold + 3s fade out)
-            else if (elapsed >= 2 && elapsed < 5) {
+            // Message 1: Hai del! (6-15s = 2s fade in + 5s display + 2s fade out)
+            else if (elapsed >= 6 && elapsed < 8) {
                 currentText = "Hai del!";
-                targetOpacity = Math.min(1, (elapsed - 2) / 3); // 3s fade in
+                targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
             }
-            else if (elapsed >= 5 && elapsed < 6) {
+            else if (elapsed >= 8 && elapsed < 13) {
                 currentText = "Hai del!";
-                targetOpacity = 1; // 1s hold
+                targetOpacity = 1; // 5s display
             }
-            else if (elapsed >= 6 && elapsed < 9) {
+            else if (elapsed >= 13 && elapsed < 15) {
                 currentText = "Hai del!";
-                targetOpacity = Math.max(0, 1 - (elapsed - 6) / 3); // 3s fade out
+                targetOpacity = Math.max(0, 1 - (elapsed - 13) / 2); // 2s fade out
             }
-            // Message 2: Happiness message (9-17s)
-            else if (elapsed >= 9 && elapsed < 12) {
+            // Message 2: Happiness message (15-24s)
+            else if (elapsed >= 15 && elapsed < 17) {
                 currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
-                targetOpacity = Math.min(1, (elapsed - 9) / 3); // 3s fade in
+                targetOpacity = Math.min(1, (elapsed - 15) / 2); // 2s fade in
             }
-            else if (elapsed >= 12 && elapsed < 14) {
+            else if (elapsed >= 17 && elapsed < 22) {
                 currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = 1; // 5s display
             }
-            else if (elapsed >= 14 && elapsed < 17) {
+            else if (elapsed >= 22 && elapsed < 24) {
                 currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
-                targetOpacity = Math.max(0, 1 - (elapsed - 14) / 3); // 3s fade out
+                targetOpacity = Math.max(0, 1 - (elapsed - 22) / 2); // 2s fade out
             }
-            // Message 3: Permission message (17-25s)
-            else if (elapsed >= 17 && elapsed < 20) {
+            // Message 3: Permission message (24-33s)
+            else if (elapsed >= 24 && elapsed < 26) {
                 currentText = "Izinkan aku bilang\nsesuatu ke kamu";
-                targetOpacity = Math.min(1, (elapsed - 17) / 3); // 3s fade in
+                targetOpacity = Math.min(1, (elapsed - 24) / 2); // 2s fade in
             }
-            else if (elapsed >= 20 && elapsed < 22) {
+            else if (elapsed >= 26 && elapsed < 31) {
                 currentText = "Izinkan aku bilang\nsesuatu ke kamu";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = 1; // 5s display
             }
-            else if (elapsed >= 22 && elapsed < 25) {
+            else if (elapsed >= 31 && elapsed < 33) {
                 currentText = "Izinkan aku bilang\nsesuatu ke kamu";
-                targetOpacity = Math.max(0, 1 - (elapsed - 22) / 3); // 3s fade out
+                targetOpacity = Math.max(0, 1 - (elapsed - 31) / 2); // 2s fade out
             }
-            // Message 4: Lucky message (25-33s)
-            else if (elapsed >= 25 && elapsed < 28) {
+            // Message 4: Lucky message (33-42s)
+            else if (elapsed >= 33 && elapsed < 35) {
                 currentText = "everyday I cannot believe\nhow lucky I am";
-                targetOpacity = Math.min(1, (elapsed - 25) / 3); // 3s fade in
+                targetOpacity = Math.min(1, (elapsed - 33) / 2); // 2s fade in
             }
-            else if (elapsed >= 28 && elapsed < 30) {
+            else if (elapsed >= 35 && elapsed < 40) {
                 currentText = "everyday I cannot believe\nhow lucky I am";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = 1; // 5s display
             }
-            else if (elapsed >= 30 && elapsed < 33) {
+            else if (elapsed >= 40 && elapsed < 42) {
                 currentText = "everyday I cannot believe\nhow lucky I am";
-                targetOpacity = Math.max(0, 1 - (elapsed - 30) / 3); // 3s fade out
+                targetOpacity = Math.max(0, 1 - (elapsed - 40) / 2); // 2s fade out
             }
-            // Message 5: Stars message (33-41s)
-            else if (elapsed >= 33 && elapsed < 36) {
+            // Message 5: Stars message (42-51s)
+            else if (elapsed >= 42 && elapsed < 44) {
                 currentText = "amongst trillions and\ntrillions of stars";
-                targetOpacity = Math.min(1, (elapsed - 33) / 3); // 3s fade in
+                targetOpacity = Math.min(1, (elapsed - 42) / 2); // 2s fade in
             }
-            else if (elapsed >= 36 && elapsed < 38) {
+            else if (elapsed >= 44 && elapsed < 49) {
                 currentText = "amongst trillions and\ntrillions of stars";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = 1; // 5s display
             }
-            else if (elapsed >= 38 && elapsed < 41) {
+            else if (elapsed >= 49 && elapsed < 51) {
                 currentText = "amongst trillions and\ntrillions of stars";
-                targetOpacity = Math.max(0, 1 - (elapsed - 38) / 3); // 3s fade out
+                targetOpacity = Math.max(0, 1 - (elapsed - 49) / 2); // 2s fade out
             }
-            // Message 6: Years message (41-49s)
-            else if (elapsed >= 41 && elapsed < 44) {
+            // Message 6: Years message (51-60s)
+            else if (elapsed >= 51 && elapsed < 53) {
                 currentText = "over billions of years";
-                targetOpacity = Math.min(1, (elapsed - 41) / 3); // 3s fade in
+                targetOpacity = Math.min(1, (elapsed - 51) / 2); // 2s fade in
             }
-            else if (elapsed >= 44 && elapsed < 46) {
+            else if (elapsed >= 53 && elapsed < 58) {
                 currentText = "over billions of years";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = 1; // 5s display
             }
-            else if (elapsed >= 46 && elapsed < 49) {
+            else if (elapsed >= 58 && elapsed < 60) {
                 currentText = "over billions of years";
-                targetOpacity = Math.max(0, 1 - (elapsed - 46) / 3); // 3s fade out
+                targetOpacity = Math.max(0, 1 - (elapsed - 58) / 2); // 2s fade out
             }
-            // Message 7: Life message (49-57s)
-            else if (elapsed >= 49 && elapsed < 52) {
-                currentText = "to be alive, and to get\nto spend this life with you";
-                targetOpacity = Math.min(1, (elapsed - 49) / 3); // 3s fade in
-            }
-            else if (elapsed >= 52 && elapsed < 54) {
-                currentText = "to be alive, and to get\nto spend this life with you";
-                targetOpacity = 1; // 2s hold
-            }
-            else if (elapsed >= 54 && elapsed < 57) {
-                currentText = "to be alive, and to get\nto spend this life with you";
-                targetOpacity = Math.max(0, 1 - (elapsed - 54) / 3); // 3s fade out
-            }
-            // Message 8: Unlikely message (57-65s)
-            else if (elapsed >= 57 && elapsed < 60) {
-                currentText = "is so incredibly,\nunfathomably unlikely";
-                targetOpacity = Math.min(1, (elapsed - 57) / 3); // 3s fade in
-            }
+            // Message 7: Life message (60-69s)
             else if (elapsed >= 60 && elapsed < 62) {
+                currentText = "to be alive, and to get\nto spend this life with you";
+                targetOpacity = Math.min(1, (elapsed - 60) / 2); // 2s fade in
+            }
+            else if (elapsed >= 62 && elapsed < 67) {
+                currentText = "to be alive, and to get\nto spend this life with you";
+                targetOpacity = 1; // 5s display
+            }
+            else if (elapsed >= 67 && elapsed < 69) {
+                currentText = "to be alive, and to get\nto spend this life with you";
+                targetOpacity = Math.max(0, 1 - (elapsed - 67) / 2); // 2s fade out
+            }
+            // Message 8: Unlikely message (69-78s)
+            else if (elapsed >= 69 && elapsed < 71) {
                 currentText = "is so incredibly,\nunfathomably unlikely";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = Math.min(1, (elapsed - 69) / 2); // 2s fade in
             }
-            else if (elapsed >= 62 && elapsed < 65) {
+            else if (elapsed >= 71 && elapsed < 76) {
                 currentText = "is so incredibly,\nunfathomably unlikely";
-                targetOpacity = Math.max(0, 1 - (elapsed - 62) / 3); // 3s fade out
-            }
-            // Message 9: Impossible chance (65-73s)
-            else if (elapsed >= 65 && elapsed < 68) {
-                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
-                targetOpacity = Math.min(1, (elapsed - 65) / 3); // 3s fade in
-            }
-            else if (elapsed >= 68 && elapsed < 70) {
-                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
-                targetOpacity = 1; // 2s hold
-            }
-            else if (elapsed >= 70 && elapsed < 73) {
-                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
-                targetOpacity = Math.max(0, 1 - (elapsed - 70) / 3); // 3s fade out
-            }
-            // Message 10: Feelings (73-81s)
-            else if (elapsed >= 73 && elapsed < 76) {
-                currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
-                targetOpacity = Math.min(1, (elapsed - 73) / 3); // 3s fade in
+                targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 76 && elapsed < 78) {
+                currentText = "is so incredibly,\nunfathomably unlikely";
+                targetOpacity = Math.max(0, 1 - (elapsed - 76) / 2); // 2s fade out
+            }
+            // Message 9: Impossible chance (78-87s)
+            else if (elapsed >= 78 && elapsed < 80) {
+                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
+                targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
+            }
+            else if (elapsed >= 80 && elapsed < 85) {
+                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
+                targetOpacity = 1; // 5s display
+            }
+            else if (elapsed >= 85 && elapsed < 87) {
+                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
+                targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
+            }
+            // Message 10: Feelings (87-96s)
+            else if (elapsed >= 87 && elapsed < 89) {
                 currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = Math.min(1, (elapsed - 87) / 2); // 2s fade in
             }
-            else if (elapsed >= 78 && elapsed < 81) {
+            else if (elapsed >= 89 && elapsed < 94) {
                 currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
-                targetOpacity = Math.max(0, 1 - (elapsed - 78) / 3); // 3s fade out
+                targetOpacity = 1; // 5s display
             }
-            // Message 11: You mean a lot (81-89s)
-            else if (elapsed >= 81 && elapsed < 84) {
-                currentText = "You mean a lot to me";
-                targetOpacity = Math.min(1, (elapsed - 81) / 3); // 3s fade in
+            else if (elapsed >= 94 && elapsed < 96) {
+                currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
+                targetOpacity = Math.max(0, 1 - (elapsed - 94) / 2); // 2s fade out
             }
-            else if (elapsed >= 84 && elapsed < 86) {
-                currentText = "You mean a lot to me";
-                targetOpacity = 1; // 2s hold
+            // SPECIAL Message 11: "You mean a lot to me" - Word by word animation (96-117s)
+            else if (elapsed >= 96 && elapsed < 117) {
+                let wordStartTime = 96;
+                let words = ["You", "mean", "a lot", "to", "me"];
+                let wordLines = [];
+                
+                // Each word fades in over 1 second, starting 1 second apart
+                for (let i = 0; i < words.length; i++) {
+                    let wordStart = wordStartTime + i;
+                    let wordEnd = wordStart + 1;
+                    
+                    if (elapsed >= wordStart && elapsed < wordEnd) {
+                        // Fade in this word
+                        for (let j = 0; j <= i; j++) {
+                            if (j === i) {
+                                // Current word fading in
+                                wordLines.push(words[j]);
+                            } else {
+                                // Previous words already visible
+                                wordLines.push(words[j]);
+                            }
+                        }
+                        let wordOpacity = Math.min(1, (elapsed - wordStart) / 1); // 1s fade in for current word
+                        targetOpacity = wordOpacity;
+                    } else if (elapsed >= wordEnd) {
+                        // Word is fully visible
+                        for (let j = 0; j <= i; j++) {
+                            wordLines.push(words[j]);
+                        }
+                        if (i === words.length - 1) {
+                            // All words are visible
+                            targetOpacity = 1;
+                        }
+                    }
+                }
+                
+                currentText = wordLines.join('\n');
+                
+                // Hold all words for 8 seconds after last word appears (101-109s)
+                if (elapsed >= 101 && elapsed < 109) {
+                    currentText = "You\nmean\na lot\nto\nme";
+                    targetOpacity = 1; // 8s display
+                }
+                // Fade out all words (109-111s)
+                else if (elapsed >= 109 && elapsed < 111) {
+                    currentText = "You\nmean\na lot\nto\nme";
+                    targetOpacity = Math.max(0, 1 - (elapsed - 109) / 2); // 2s fade out
+                }
             }
-            else if (elapsed >= 86 && elapsed < 89) {
-                currentText = "You mean a lot to me";
-                targetOpacity = Math.max(0, 1 - (elapsed - 86) / 3); // 3s fade out
-            }
-            // Message 12: Research message (89-97s)
-            else if (elapsed >= 89 && elapsed < 92) {
+            // Message 12: Research message (111-120s)
+            else if (elapsed >= 111 && elapsed < 113) {
                 currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
-                targetOpacity = Math.min(1, (elapsed - 89) / 3); // 3s fade in
+                targetOpacity = Math.min(1, (elapsed - 111) / 2); // 2s fade in
             }
-            else if (elapsed >= 92 && elapsed < 94) {
+            else if (elapsed >= 113 && elapsed < 118) {
                 currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
-                targetOpacity = 1; // 2s hold
+                targetOpacity = 1; // 5s display
+            }
+            else if (elapsed >= 118 && elapsed < 120) {
+                currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
+                targetOpacity = Math.max(0, 1 - (elapsed - 118) / 2); // 2s fade out
+            }
+            // Message 13: Walking invitation (120-129s)
+            else if (elapsed >= 120 && elapsed < 122) {
+                currentText = "makanya itu yuk kita jalan :)";
+                targetOpacity = Math.min(1, (elapsed - 120) / 2); // 2s fade in
+            }
+            else if (elapsed >= 122 && elapsed < 127) {
+                currentText = "makanya itu yuk kita jalan :)";
+                targetOpacity = 1; // 5s display
+            }
+            else if (elapsed >= 127 && elapsed < 129) {
+                currentText = "makanya itu yuk kita jalan :)";
+                targetOpacity = Math.max(0, 1 - (elapsed - 127) / 2); // 2s fade out
+            }
+            else if (elapsed >= 129) {
+                // Show button after all messages
+                if (!buttonCreated) {
+                    createButton();
+                    buttonCreated = true;
+                }
+                targetOpacity = 0;
             }
             else if (elapsed >= 94 && elapsed < 97) {
                 currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
