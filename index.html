@@ -565,11 +565,11 @@
                 targetOpacity = 0;
             } 
             // Message 1: Hai del! (6-15s)
-            else if (elapsed >= 3 && elapsed < 6) {
+            else if (elapsed >= 6 && elapsed < 8) {
                 currentText = "Hai del!";
                 targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
             }
-            else if (elapsed >= 6 && elapsed < 13) {
+            else if (elapsed >= 8 && elapsed < 13) {
                 currentText = "Hai del!";
                 targetOpacity = 1; // 5s display
             }
@@ -592,15 +592,15 @@
             }
             // Message 3: Permission message (24-33s)
             else if (elapsed >= 24 && elapsed < 26) {
-                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
+                currentText = "Izinkan aku bilang\n\perasaanku ke kamu";
                 targetOpacity = Math.min(1, (elapsed - 24) / 2); // 2s fade in
             }
             else if (elapsed >= 26 && elapsed < 31) {
-                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
+                currentText = "Izinkan aku bilang\n\perasaanku ke kamu";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 31 && elapsed < 33) {
-                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
+                currentText = "Izinkan aku bilang\n\perasaanku ke kamu";
                 targetOpacity = Math.max(0, 1 - (elapsed - 31) / 2); // 2s fade out
             }
             // Message 4: Lucky message (33-42s)
@@ -618,28 +618,28 @@
             }
             // Message 5: Stars message (42-51s)
             else if (elapsed >= 42 && elapsed < 44) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
+                currentText = "amongst trillions and\n\ntrillions of stars";
                 targetOpacity = Math.min(1, (elapsed - 42) / 2); // 2s fade in
             }
             else if (elapsed >= 44 && elapsed < 49) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
+                currentText = "amongst trillions and\n\ntrillions of stars";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 49 && elapsed < 51) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
+                currentText = "amongst trillions and\n\ntrillions of stars";
                 targetOpacity = Math.max(0, 1 - (elapsed - 49) / 2); // 2s fade out
             }
             // Message 6: Years message (51-60s)
             else if (elapsed >= 51 && elapsed < 53) {
-                currentText = "and over billions of years..";
+                currentText = "over billions of years";
                 targetOpacity = Math.min(1, (elapsed - 51) / 2); // 2s fade in
             }
             else if (elapsed >= 53 && elapsed < 58) {
-                currentText = "and over billions of years..";
+                currentText = "over billions of years";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 58 && elapsed < 60) {
-                currentText = "and over billions of years..";
+                currentText = "over billions of years";
                 targetOpacity = Math.max(0, 1 - (elapsed - 58) / 2); // 2s fade out
             }
             // Message 7: Life message (60-69s)
@@ -668,18 +668,43 @@
                 currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = Math.max(0, 1 - (elapsed - 76) / 2); // 2s fade out
             }
-            // Message 9: Impossible chance (78-87s)
+            // Message 9: Impossible chance (78-94s) - DRAMATIC VERSION
             else if (elapsed >= 78 && elapsed < 80) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                // First part fades in
+                currentText = "and yet.. here I am\n\ncrossing paths with you..";
                 targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
             }
-            else if (elapsed >= 80 && elapsed < 85) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
-                targetOpacity = 1; // 5s display
+            else if (elapsed >= 80 && elapsed < 84) {
+                // First part displays alone for 4 seconds
+                currentText = "and yet.. here I am\n\ncrossing paths with you..";
+                targetOpacity = 1; // 4s display first part only
             }
-            else if (elapsed >= 85 && elapsed < 87) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
-                targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
+            else if (elapsed >= 84 && elapsed < 86) {
+                // Second part fades in while first part stays
+                let firstPart = "and yet.. here I am\n\ncrossing paths with you..";
+                let secondPart = "\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                
+                // Calculate opacity for second part (fading in)
+                let secondPartOpacity = Math.min(1, (elapsed - 84) / 2); // 2s fade in
+                
+                // For rendering, we'll use a special approach
+                currentText = firstPart + secondPart;
+                targetOpacity = 1; // First part stays fully visible
+                
+                // Store second part opacity for special rendering
+                window.secondPartOpacity = secondPartOpacity;
+            }
+            else if (elapsed >= 86 && elapsed < 89) {
+                // Both parts fully visible
+                currentText = "and yet.. here I am\n\ncrossing paths with you..\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                targetOpacity = 1; // 3s both parts display
+                window.secondPartOpacity = 1;
+            }
+            else if (elapsed >= 89 && elapsed < 91) {
+                // Both parts fade out together
+                currentText = "and yet.. here I am\n\ncrossing paths with you..\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                targetOpacity = Math.max(0, 1 - (elapsed - 89) / 2); // 2s fade out
+                window.secondPartOpacity = targetOpacity;
             }
             // Message 10: Feelings (87-96s)
             else if (elapsed >= 87 && elapsed < 89) {
@@ -696,15 +721,15 @@
             }
             // Message 11: You mean a lot to me (96-108s) - DRAMATIC version
             else if (elapsed >= 96 && elapsed < 98) {
-                currentText = "You mean...\n\nso incredibly much to me\n\nlike SERIOUSLY a lot";
+                currentText = "You mean...\n\nso incredibly much to me\n\nlike a lot";
                 targetOpacity = Math.min(1, (elapsed - 96) / 2); // 2s fade in
             }
             else if (elapsed >= 98 && elapsed < 106) {
-                currentText = "You mean...\n\nso incredibly much to me\n\nlike SERIOUSLY a lot";
+                currentText = "You mean...\n\nso incredibly much to me\n\nlike a lot";
                 targetOpacity = 1; // 8s display
             }
             else if (elapsed >= 106 && elapsed < 108) {
-                currentText = "You mean...\n\nso incredibly much to me\n\nlike SERIOUSLY a lot";
+                currentText = "You mean...\n\nso incredibly much to me\n\nlike a lot";
                 targetOpacity = Math.max(0, 1 - (elapsed - 106) / 2); // 2s fade out
             }
             // Message 12: Research message (108-117s)
@@ -722,15 +747,15 @@
             }
             // Message 13: Walking invitation (117-126s)
             else if (elapsed >= 117 && elapsed < 119) {
-                currentText = "Bahaya ya, makanya yuk kita jalan :)\n\nketik REG [SPASI] MAU! dan kirim ke whatsapp aku";
+                currentText = "Bahaya kann, makanya itu yuk kita jalan :)\n\nketik REG [SPASI] MAU! dan kirim ke whatsapp aku";
                 targetOpacity = Math.min(1, (elapsed - 117) / 2); // 2s fade in
             }
             else if (elapsed >= 119 && elapsed < 124) {
-                currentText = "Bahaya ya, makanya yuk kita jalan :)\n\nketik REG [SPASI] MAU! dan kirim ke whatsapp aku";
+                currentText = "Bahaya kann, makanya itu yuk kita jalan :)\n\nketik REG [SPASI] MAU! dan kirim ke whatsapp aku";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 124 && elapsed < 126) {
-                currentText = "Bahaya ya, makanya yuk kita jalan :)\n\nketik REG [SPASI] MAU! dan kirim ke whatsapp aku";
+                currentText = "Bahaya kann, makanya itu yuk kita jalan :)\n\nketik REG [SPASI] MAU! dan kirim ke whatsapp aku";
                 targetOpacity = Math.max(0, 1 - (elapsed - 124) / 2); // 2s fade out
             }
             // Message 14: Signature (126-135s)
@@ -759,19 +784,40 @@
             const beatPulse = Math.sin(elapsed * 1.5) * 0.05 + 1; // Subtle pulse
             const finalOpacity = targetOpacity * beatPulse;
 
-            // DRAW TEXT WITH ENHANCED EFFECTS
+            // DRAW TEXT WITH ENHANCED EFFECTS AND SPECIAL DRAMATIC RENDERING
             if (finalOpacity > 0 && currentText) {
                 context.fillStyle = `rgba(255, 105, 180, ${finalOpacity})`;
                 
                 // Add breathing effect to shadow
                 context.shadowBlur = 20 + Math.sin(elapsed * 2) * 5;
                 
-                if (currentText.includes('\n')) {
-                    const lines = currentText.split('\n').filter(line => line.trim());
-                    drawTextWithLineBreaks(lines, canvas.width / 2, canvas.height / 2 - (lines.length * fontSize / 4), fontSize, lineHeight);
+                // Special handling for dramatic Message 9 (second part fading in)
+                if (elapsed >= 84 && elapsed < 86 && window.secondPartOpacity !== undefined) {
+                    // Split the text for special rendering
+                    let firstPart = "and yet.. here I am\n\ncrossing paths with you..";
+                    let secondPart = "\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                    
+                    // Draw first part (fully visible)
+                    if (firstPart.includes('\n')) {
+                        const lines = firstPart.split('\n').filter(line => line.trim());
+                        drawTextWithLineBreaks(lines, canvas.width / 2, canvas.height / 2 - (6 * fontSize / 4), fontSize, lineHeight);
+                    }
+                    
+                    // Draw second part (fading in)
+                    context.fillStyle = `rgba(255, 105, 180, ${window.secondPartOpacity})`;
+                    if (secondPart.includes('\n')) {
+                        const lines = secondPart.split('\n').filter(line => line.trim());
+                        drawTextWithLineBreaks(lines, canvas.width / 2, canvas.height / 2 + (2 * fontSize / 4), fontSize, lineHeight);
+                    }
                 } else {
-                    context.strokeText(currentText, canvas.width / 2, canvas.height / 2);
-                    context.fillText(currentText, canvas.width / 2, canvas.height / 2);
+                    // Normal text rendering
+                    if (currentText.includes('\n')) {
+                        const lines = currentText.split('\n').filter(line => line.trim());
+                        drawTextWithLineBreaks(lines, canvas.width / 2, canvas.height / 2 - (lines.length * fontSize / 4), fontSize, lineHeight);
+                    } else {
+                        context.strokeText(currentText, canvas.width / 2, canvas.height / 2);
+                        context.fillText(currentText, canvas.width / 2, canvas.height / 2);
+                    }
                 }
             }
 
