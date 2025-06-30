@@ -46,7 +46,7 @@
             display: block !important;
         }
 
-        /* SPLASH SCREEN - SIMPLE */
+        /* SPLASH SCREEN */
         .splash-screen {
             position: fixed;
             top: 0;
@@ -156,7 +156,7 @@
             display: none;
         }
 
-        /* SURPRISE PHOTO GALLERY (Hidden initially) */
+        /* SURPRISE PHOTO GALLERY */
         .surprise-gallery {
             position: fixed !important;
             top: 0 !important;
@@ -184,14 +184,12 @@
             transition: all 0.5s ease;
             opacity: 0;
             animation: surprisePhotoIn 1.5s ease forwards;
-            background: linear-gradient(45deg, #ff69b4, #ff1493, #da70d6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
+        }
+
+        .surprise-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .surprise-photo:hover {
@@ -317,12 +315,12 @@
             }
 
             /* Smaller circular photos for mobile */
-            .surprise-1 { width: 120px; height: 120px; top: 8%; left: 5%; font-size: 18px; }
-            .surprise-2 { width: 140px; height: 140px; top: 12%; right: 5%; font-size: 20px; }
-            .surprise-3 { width: 100px; height: 100px; bottom: 20%; left: 8%; font-size: 16px; }
-            .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; font-size: 18px; }
-            .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; font-size: 14px; }
-            .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; font-size: 16px; }
+            .surprise-1 { width: 120px; height: 120px; top: 8%; left: 5%; }
+            .surprise-2 { width: 140px; height: 140px; top: 12%; right: 5%; }
+            .surprise-3 { width: 100px; height: 100px; bottom: 20%; left: 8%; }
+            .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; }
+            .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; }
+            .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; }
         }
 
         @media (max-width: 480px) {
@@ -335,17 +333,17 @@
             }
 
             /* Even smaller for small mobile */
-            .surprise-1 { width: 90px; height: 90px; font-size: 14px; }
-            .surprise-2 { width: 110px; height: 110px; font-size: 16px; }
-            .surprise-3 { width: 80px; height: 80px; font-size: 12px; }
-            .surprise-4 { width: 100px; height: 100px; font-size: 14px; }
-            .surprise-5 { width: 70px; height: 70px; font-size: 10px; }
-            .surprise-6 { width: 85px; height: 85px; font-size: 12px; }
+            .surprise-1 { width: 90px; height: 90px; }
+            .surprise-2 { width: 110px; height: 110px; }
+            .surprise-3 { width: 80px; height: 80px; }
+            .surprise-4 { width: 100px; height: 100px; }
+            .surprise-5 { width: 70px; height: 70px; }
+            .surprise-6 { width: 85px; height: 85px; }
         }
     </style>
 </head>
 <body>
-    <!-- SIMPLE SPLASH SCREEN -->
+    <!-- SPLASH SCREEN -->
     <div class="splash-screen" id="splashScreen">
         <div class="splash-title">💕 Untuk Della 💕</div>
         <div class="splash-subtitle">Klik untuk memulai</div>
@@ -354,25 +352,25 @@
 
     <canvas id="starfield"></canvas>
 
-    <!-- SURPRISE PHOTO GALLERY (Hidden) -->
+    <!-- SURPRISE PHOTO GALLERY -->
     <div class="surprise-gallery" id="surpriseGallery">
         <div class="surprise-photo surprise-1">
-            💕<br>Our<br>Memories
+            <img src="assets/images/1.jpeg" alt="Memory 1" loading="lazy">
         </div>
         <div class="surprise-photo surprise-2">
-            ❤️<br>Beautiful<br>Moments
+            <img src="assets/images/2.jpeg" alt="Memory 2" loading="lazy">
         </div>
         <div class="surprise-photo surprise-3">
-            🌟<br>Special<br>Times
+            <img src="assets/images/3.jpeg" alt="Memory 3" loading="lazy">
         </div>
         <div class="surprise-photo surprise-4">
-            💖<br>Sweet<br>Days
+            <img src="assets/images/4.jpeg" alt="Memory 4" loading="lazy">
         </div>
         <div class="surprise-photo surprise-5">
-            🥰<br>Happy<br>Times
+            <img src="assets/images/5.jpeg" alt="Memory 5" loading="lazy">
         </div>
         <div class="surprise-photo surprise-6">
-            ✨<br>Magic<br>Moments
+            <img src="assets/images/6.jpeg" alt="Memory 6" loading="lazy">
         </div>
     </div>
     
@@ -384,7 +382,6 @@
     <audio id="backgroundMusic" loop preload="auto">
         <source src="assets/yungkai.mp3" type="audio/mpeg">
         <source src="assets/yung-kai-blue.mp3" type="audio/mpeg">
-        <source src="https://www.soundjay.com/misc/sounds-for-free/romantic-music.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -560,180 +557,183 @@
             context.shadowOffsetX = 0;
             context.shadowOffsetY = 0;
 
-            // NEW TIMELINE WITH 1.5 SECOND FADE IN/OUT
+            // NEW TIMELINE WITH 3 SECOND FADE IN/OUT
             let currentText = "";
             let targetOpacity = 0;
-            let fadeSpeed = 0.011; // 1.5 second fade (60fps)
 
             if (elapsed >= 0 && elapsed < 2) {
                 targetOpacity = 0;
             } 
-            // Message 1: Hai del! (2-5s)
-            else if (elapsed >= 2 && elapsed < 3.5) {
+            // Message 1: Hai del! (2-8s = 3s fade in + 2s hold + 3s fade out)
+            else if (elapsed >= 2 && elapsed < 5) {
                 currentText = "Hai del!";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 2) / 3); // 3s fade in
             }
-            else if (elapsed >= 3.5 && elapsed < 5) {
+            else if (elapsed >= 5 && elapsed < 6) {
                 currentText = "Hai del!";
-                targetOpacity = 0;
+                targetOpacity = 1; // 1s hold
             }
-            // Message 2: Happiness message (5-9s)
-            else if (elapsed >= 5 && elapsed < 6.5) {
+            else if (elapsed >= 6 && elapsed < 9) {
+                currentText = "Hai del!";
+                targetOpacity = Math.max(0, 1 - (elapsed - 6) / 3); // 3s fade out
+            }
+            // Message 2: Happiness message (9-17s)
+            else if (elapsed >= 9 && elapsed < 12) {
                 currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 9) / 3); // 3s fade in
             }
-            else if (elapsed >= 6.5 && elapsed < 9) {
+            else if (elapsed >= 12 && elapsed < 14) {
                 currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 9 && elapsed < 10.5) {
+            else if (elapsed >= 14 && elapsed < 17) {
                 currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 14) / 3); // 3s fade out
             }
-            // Message 3: Permission message (10.5-14s)
-            else if (elapsed >= 10.5 && elapsed < 12) {
+            // Message 3: Permission message (17-25s)
+            else if (elapsed >= 17 && elapsed < 20) {
                 currentText = "Izinkan aku bilang\nsesuatu ke kamu";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 17) / 3); // 3s fade in
             }
-            else if (elapsed >= 12 && elapsed < 13) {
+            else if (elapsed >= 20 && elapsed < 22) {
                 currentText = "Izinkan aku bilang\nsesuatu ke kamu";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 13 && elapsed < 14.5) {
+            else if (elapsed >= 22 && elapsed < 25) {
                 currentText = "Izinkan aku bilang\nsesuatu ke kamu";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 22) / 3); // 3s fade out
             }
-            // Message 4: Lucky message (14.5-18.5s)
-            else if (elapsed >= 14.5 && elapsed < 16) {
+            // Message 4: Lucky message (25-33s)
+            else if (elapsed >= 25 && elapsed < 28) {
                 currentText = "everyday I cannot believe\nhow lucky I am";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 25) / 3); // 3s fade in
             }
-            else if (elapsed >= 16 && elapsed < 17) {
+            else if (elapsed >= 28 && elapsed < 30) {
                 currentText = "everyday I cannot believe\nhow lucky I am";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 17 && elapsed < 18.5) {
+            else if (elapsed >= 30 && elapsed < 33) {
                 currentText = "everyday I cannot believe\nhow lucky I am";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 30) / 3); // 3s fade out
             }
-            // Message 5: Stars message (18.5-23s)
-            else if (elapsed >= 18.5 && elapsed < 20) {
+            // Message 5: Stars message (33-41s)
+            else if (elapsed >= 33 && elapsed < 36) {
                 currentText = "amongst trillions and\ntrillions of stars";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 33) / 3); // 3s fade in
             }
-            else if (elapsed >= 20 && elapsed < 21.5) {
+            else if (elapsed >= 36 && elapsed < 38) {
                 currentText = "amongst trillions and\ntrillions of stars";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 21.5 && elapsed < 23) {
+            else if (elapsed >= 38 && elapsed < 41) {
                 currentText = "amongst trillions and\ntrillions of stars";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 38) / 3); // 3s fade out
             }
-            // Message 6: Years message (23-27.5s)
-            else if (elapsed >= 23 && elapsed < 24.5) {
+            // Message 6: Years message (41-49s)
+            else if (elapsed >= 41 && elapsed < 44) {
                 currentText = "over billions of years";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 41) / 3); // 3s fade in
             }
-            else if (elapsed >= 24.5 && elapsed < 26) {
+            else if (elapsed >= 44 && elapsed < 46) {
                 currentText = "over billions of years";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 26 && elapsed < 27.5) {
+            else if (elapsed >= 46 && elapsed < 49) {
                 currentText = "over billions of years";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 46) / 3); // 3s fade out
             }
-            // Message 7: Life message (27.5-32s)
-            else if (elapsed >= 27.5 && elapsed < 29) {
+            // Message 7: Life message (49-57s)
+            else if (elapsed >= 49 && elapsed < 52) {
                 currentText = "to be alive, and to get\nto spend this life with you";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 49) / 3); // 3s fade in
             }
-            else if (elapsed >= 29 && elapsed < 30.5) {
+            else if (elapsed >= 52 && elapsed < 54) {
                 currentText = "to be alive, and to get\nto spend this life with you";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 30.5 && elapsed < 32) {
+            else if (elapsed >= 54 && elapsed < 57) {
                 currentText = "to be alive, and to get\nto spend this life with you";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 54) / 3); // 3s fade out
             }
-            // Message 8: Unlikely message (32-37s)
-            else if (elapsed >= 32 && elapsed < 33.5) {
+            // Message 8: Unlikely message (57-65s)
+            else if (elapsed >= 57 && elapsed < 60) {
                 currentText = "is so incredibly,\nunfathomably unlikely";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 57) / 3); // 3s fade in
             }
-            else if (elapsed >= 33.5 && elapsed < 35.5) {
+            else if (elapsed >= 60 && elapsed < 62) {
                 currentText = "is so incredibly,\nunfathomably unlikely";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 35.5 && elapsed < 37) {
+            else if (elapsed >= 62 && elapsed < 65) {
                 currentText = "is so incredibly,\nunfathomably unlikely";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 62) / 3); // 3s fade out
             }
-            // Message 9: Impossible chance (37-42s)
-            else if (elapsed >= 37 && elapsed < 38.5) {
+            // Message 9: Impossible chance (65-73s)
+            else if (elapsed >= 65 && elapsed < 68) {
                 currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 65) / 3); // 3s fade in
             }
-            else if (elapsed >= 38.5 && elapsed < 40.5) {
+            else if (elapsed >= 68 && elapsed < 70) {
                 currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 40.5 && elapsed < 42) {
+            else if (elapsed >= 70 && elapsed < 73) {
                 currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 70) / 3); // 3s fade out
             }
-            // Message 10: Feelings (42-47s)
-            else if (elapsed >= 42 && elapsed < 43.5) {
+            // Message 10: Feelings (73-81s)
+            else if (elapsed >= 73 && elapsed < 76) {
                 currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 73) / 3); // 3s fade in
             }
-            else if (elapsed >= 43.5 && elapsed < 45.5) {
+            else if (elapsed >= 76 && elapsed < 78) {
                 currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 45.5 && elapsed < 47) {
+            else if (elapsed >= 78 && elapsed < 81) {
                 currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 78) / 3); // 3s fade out
             }
-            // Message 11: You mean a lot (47-52s)
-            else if (elapsed >= 47 && elapsed < 48.5) {
+            // Message 11: You mean a lot (81-89s)
+            else if (elapsed >= 81 && elapsed < 84) {
                 currentText = "You mean a lot to me";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 81) / 3); // 3s fade in
             }
-            else if (elapsed >= 48.5 && elapsed < 50.5) {
+            else if (elapsed >= 84 && elapsed < 86) {
                 currentText = "You mean a lot to me";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 50.5 && elapsed < 52) {
+            else if (elapsed >= 86 && elapsed < 89) {
                 currentText = "You mean a lot to me";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 86) / 3); // 3s fade out
             }
-            // Message 12: Research message (52-57s)
-            else if (elapsed >= 52 && elapsed < 53.5) {
+            // Message 12: Research message (89-97s)
+            else if (elapsed >= 89 && elapsed < 92) {
                 currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 89) / 3); // 3s fade in
             }
-            else if (elapsed >= 53.5 && elapsed < 55.5) {
+            else if (elapsed >= 92 && elapsed < 94) {
                 currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 55.5 && elapsed < 57) {
+            else if (elapsed >= 94 && elapsed < 97) {
                 currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
-                targetOpacity = 0;
+                targetOpacity = Math.max(0, 1 - (elapsed - 94) / 3); // 3s fade out
             }
-            // Message 13: Walking invitation (57-62s)
-            else if (elapsed >= 57 && elapsed < 58.5) {
+            // Message 13: Walking invitation (97-105s)
+            else if (elapsed >= 97 && elapsed < 100) {
                 currentText = "makanya itu yuk kita jalan :)";
-                targetOpacity = 1;
+                targetOpacity = Math.min(1, (elapsed - 97) / 3); // 3s fade in
             }
-            else if (elapsed >= 58.5 && elapsed < 60.5) {
+            else if (elapsed >= 100 && elapsed < 102) {
                 currentText = "makanya itu yuk kita jalan :)";
-                targetOpacity = 1;
+                targetOpacity = 1; // 2s hold
             }
-            else if (elapsed >= 60.5 && elapsed < 62) {
-                currentText = "makanya itu yuk kita jalan :)";
-                targetOpacity = 0;
+            else if (elapsed >= 102 && elapsed < 105) {
+                currentText = "makanya ito yuk kita jalan :)";
+                targetOpacity = Math.max(0, 1 - (elapsed - 102) / 3); // 3s fade out
             }
-            else if (elapsed >= 62) {
+            else if (elapsed >= 105) {
                 // Show button after all messages
                 if (!buttonCreated) {
                     createButton();
@@ -742,21 +742,9 @@
                 targetOpacity = 0;
             }
 
-            // SMOOTH FADE LOGIC
-            const fadeStep = 0.016; // 60fps smooth fade
-            if (Math.abs(textOpacity - targetOpacity) > fadeStep) {
-                if (textOpacity < targetOpacity) {
-                    textOpacity = Math.min(targetOpacity, textOpacity + fadeStep);
-                } else {
-                    textOpacity = Math.max(targetOpacity, textOpacity - fadeStep);
-                }
-            } else {
-                textOpacity = targetOpacity;
-            }
-
             // BEAT-SYNCHRONIZED PULSE EFFECT
             const beatPulse = Math.sin(elapsed * 1.5) * 0.05 + 1; // Subtle pulse
-            const finalOpacity = textOpacity * beatPulse;
+            const finalOpacity = targetOpacity * beatPulse;
 
             // DRAW TEXT WITH ENHANCED EFFECTS
             if (finalOpacity > 0 && currentText) {
