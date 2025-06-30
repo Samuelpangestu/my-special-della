@@ -184,12 +184,14 @@
             transition: all 0.5s ease;
             opacity: 0;
             animation: surprisePhotoIn 1.5s ease forwards;
-        }
-
-        .surprise-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #da70d6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
         }
 
         .surprise-photo:hover {
@@ -293,34 +295,6 @@
             100% { transform: translateX(-50%) scale(1); }
         }
 
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
-            50% { box-shadow: 0 8px 35px rgba(255, 23, 68, 0.8); }
-            100% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
-        }
-
-        /* SURPRISE TEXT OVERLAY */
-        .surprise-text {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 20;
-            color: white;
-            font-size: 2.2rem;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 0 0 30px rgba(255, 105, 180, 1);
-            opacity: 0;
-            transition: opacity 1s ease;
-            pointer-events: none;
-            max-width: 90%;
-        }
-
-        .surprise-text.show {
-            opacity: 1;
-        }
-
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .splash-title {
@@ -342,17 +316,13 @@
                 font-size: 16px;
             }
 
-            .surprise-text {
-                font-size: 1.6rem;
-            }
-
             /* Smaller circular photos for mobile */
-            .surprise-1 { width: 120px; height: 120px; top: 8%; left: 5%; }
-            .surprise-2 { width: 140px; height: 140px; top: 12%; right: 5%; }
-            .surprise-3 { width: 100px; height: 100px; bottom: 20%; left: 8%; }
-            .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; }
-            .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; }
-            .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; }
+            .surprise-1 { width: 120px; height: 120px; top: 8%; left: 5%; font-size: 18px; }
+            .surprise-2 { width: 140px; height: 140px; top: 12%; right: 5%; font-size: 20px; }
+            .surprise-3 { width: 100px; height: 100px; bottom: 20%; left: 8%; font-size: 16px; }
+            .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; font-size: 18px; }
+            .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; font-size: 14px; }
+            .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; font-size: 16px; }
         }
 
         @media (max-width: 480px) {
@@ -364,23 +334,17 @@
                 font-size: 1rem;
             }
 
-            .surprise-text {
-                font-size: 1.3rem;
-            }
-
             /* Even smaller for small mobile */
-            .surprise-1 { width: 90px; height: 90px; }
-            .surprise-2 { width: 110px; height: 110px; }
-            .surprise-3 { width: 80px; height: 80px; }
-            .surprise-4 { width: 100px; height: 100px; }
-            .surprise-5 { width: 70px; height: 70px; }
-            .surprise-6 { width: 85px; height: 85px; }
+            .surprise-1 { width: 90px; height: 90px; font-size: 14px; }
+            .surprise-2 { width: 110px; height: 110px; font-size: 16px; }
+            .surprise-3 { width: 80px; height: 80px; font-size: 12px; }
+            .surprise-4 { width: 100px; height: 100px; font-size: 14px; }
+            .surprise-5 { width: 70px; height: 70px; font-size: 10px; }
+            .surprise-6 { width: 85px; height: 85px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
-    <!-- NO BROWSER WARNING DIALOG -->
-    
     <!-- SIMPLE SPLASH SCREEN -->
     <div class="splash-screen" id="splashScreen">
         <div class="splash-title">💕 Untuk Della 💕</div>
@@ -393,28 +357,23 @@
     <!-- SURPRISE PHOTO GALLERY (Hidden) -->
     <div class="surprise-gallery" id="surpriseGallery">
         <div class="surprise-photo surprise-1">
-            <img src="images/IMG_1327.jpeg" alt="Memory 1">
+            💕<br>Our<br>Memories
         </div>
         <div class="surprise-photo surprise-2">
-            <img src="images/IMG_1414.jpeg" alt="Memory 2">
+            ❤️<br>Beautiful<br>Moments
         </div>
         <div class="surprise-photo surprise-3">
-            <img src="images/IMG_1425.jpeg" alt="Memory 3">
+            🌟<br>Special<br>Times
         </div>
         <div class="surprise-photo surprise-4">
-            <img src="images/IMG_1432.jpeg" alt="Memory 4">
+            💖<br>Sweet<br>Days
         </div>
         <div class="surprise-photo surprise-5">
-            <img src="images/IMG_1476.jpeg" alt="Memory 5">
+            🥰<br>Happy<br>Times
         </div>
         <div class="surprise-photo surprise-6">
-            <img src="images/IMG_1488.jpeg" alt="Memory 6">
+            ✨<br>Magic<br>Moments
         </div>
-    </div>
-
-    <!-- SURPRISE TEXT OVERLAY -->
-    <div class="surprise-text" id="surpriseText">
-        💕 Semua moment indah kita bersama 💕
     </div>
     
     <!-- MUSIC CONTROLS -->
@@ -436,7 +395,7 @@
         let animationStarted = false;
         let startTime = 0;
         
-        // SPLASH SCREEN HANDLER - NO BROWSER WARNING
+        // SPLASH SCREEN HANDLER
         document.getElementById('startButton').addEventListener('click', function() {
             console.log("🎬 Starting experience...");
             
@@ -518,14 +477,10 @@
 
         createStars();
 
-        var currentTextIndex = 0;
         var textOpacity = 0;
-        var isTextFadingIn = false;
-        var isTextFadingOut = false;
         var buttonCreated = false;
 
         const surpriseGallery = document.getElementById("surpriseGallery");
-        const surpriseText = document.getElementById("surpriseText");
 
         function toggleMusic() {
             const music = document.getElementById('backgroundMusic');
@@ -584,175 +539,210 @@
             if (!animationStarted) return;
 
             const elapsed = getElapsedTime();
-            var fontSize = Math.min(42, window.innerWidth / 18);
-            var lineHeight = 15;
+            
+            // Responsive font size - smaller for mobile
+            var fontSize = Math.min(28, window.innerWidth / 20);
+            if (window.innerWidth <= 480) {
+                fontSize = Math.min(22, window.innerWidth / 22);
+            } else if (window.innerWidth <= 768) {
+                fontSize = Math.min(26, window.innerWidth / 21);
+            }
+            
+            var lineHeight = 10;
 
             context.font = `bold ${fontSize}px Comic Sans MS`;
             context.textAlign = "center";
             
             context.strokeStyle = "rgba(0, 0, 0, 0.9)";
-            context.lineWidth = 4;
+            context.lineWidth = 3;
             context.shadowColor = "rgba(255, 105, 180, 1)";
-            context.shadowBlur = 30;
+            context.shadowBlur = 20;
             context.shadowOffsetX = 0;
             context.shadowOffsetY = 0;
 
-            // WORD-BY-WORD FADE TIMELINE with 1-second fade in/out
+            // NEW TIMELINE WITH 1.5 SECOND FADE IN/OUT
             let currentText = "";
             let targetOpacity = 0;
-            let fadeSpeed = 1.0; // 1 second fade (60fps = 0.016 per frame)
+            let fadeSpeed = 0.011; // 1.5 second fade (60fps)
 
-            // Enhanced timeline with precise word timing
-            if (elapsed >= 0 && elapsed < 3) {
+            if (elapsed >= 0 && elapsed < 2) {
                 targetOpacity = 0;
             } 
-            else if (elapsed >= 3 && elapsed < 4) {
-                // 3-4s: Fade in "Hai del!"
+            // Message 1: Hai del! (2-5s)
+            else if (elapsed >= 2 && elapsed < 3.5) {
                 currentText = "Hai del!";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 4 && elapsed < 7) {
-                // 4-7s: Hold "Hai del!"
+            else if (elapsed >= 3.5 && elapsed < 5) {
                 currentText = "Hai del!";
+                targetOpacity = 0;
+            }
+            // Message 2: Happiness message (5-9s)
+            else if (elapsed >= 5 && elapsed < 6.5) {
+                currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 7 && elapsed < 8) {
-                // 7-8s: Fade out "Hai del!", fade in longer message
-                currentText = "Semoga kamu sedang (dan selalu) berbahagia saat baca ini";
+            else if (elapsed >= 6.5 && elapsed < 9) {
+                currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 8 && elapsed < 12) {
-                // 8-12s: Hold happiness message
-                currentText = "Semoga kamu sedang (dan selalu) berbahagia saat baca ini";
+            else if (elapsed >= 9 && elapsed < 10.5) {
+                currentText = "Semoga kamu sedang\n(dan selalu) berbahagia\nsaat baca ini";
+                targetOpacity = 0;
+            }
+            // Message 3: Permission message (10.5-14s)
+            else if (elapsed >= 10.5 && elapsed < 12) {
+                currentText = "Izinkan aku bilang\nsesuatu ke kamu";
                 targetOpacity = 1;
             }
             else if (elapsed >= 12 && elapsed < 13) {
-                // 12-13s: Fade transition
-                currentText = "Izinkan aku bilang sesuatu ke kamu";
+                currentText = "Izinkan aku bilang\nsesuatu ke kamu";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 13 && elapsed < 17) {
-                // 13-17s: Hold permission message
-                currentText = "Izinkan aku bilang sesuatu ke kamu";
+            else if (elapsed >= 13 && elapsed < 14.5) {
+                currentText = "Izinkan aku bilang\nsesuatu ke kamu";
+                targetOpacity = 0;
+            }
+            // Message 4: Lucky message (14.5-18.5s)
+            else if (elapsed >= 14.5 && elapsed < 16) {
+                currentText = "everyday I cannot believe\nhow lucky I am";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 17 && elapsed < 18) {
-                // 17-18s: Fade transition
-                currentText = "everyday day I cannot believe how lucky I am";
+            else if (elapsed >= 16 && elapsed < 17) {
+                currentText = "everyday I cannot believe\nhow lucky I am";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 18 && elapsed < 22) {
-                // 18-22s: Hold lucky message
-                currentText = "everyday day I cannot believe how lucky I am";
+            else if (elapsed >= 17 && elapsed < 18.5) {
+                currentText = "everyday I cannot believe\nhow lucky I am";
+                targetOpacity = 0;
+            }
+            // Message 5: Stars message (18.5-23s)
+            else if (elapsed >= 18.5 && elapsed < 20) {
+                currentText = "amongst trillions and\ntrillions of stars";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 22 && elapsed < 23) {
-                // 22-23s: Fade transition to stars
-                currentText = "amongst trillions and trillions of stars";
+            else if (elapsed >= 20 && elapsed < 21.5) {
+                currentText = "amongst trillions and\ntrillions of stars";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 23 && elapsed < 25) {
-                // 23-25s: Hold stars message
-                currentText = "amongst trillions and trillions of stars";
+            else if (elapsed >= 21.5 && elapsed < 23) {
+                currentText = "amongst trillions and\ntrillions of stars";
+                targetOpacity = 0;
+            }
+            // Message 6: Years message (23-27.5s)
+            else if (elapsed >= 23 && elapsed < 24.5) {
+                currentText = "over billions of years";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 25 && elapsed < 26) {
-                // 25-26s: Add second line
-                currentText = "amongst trillions and trillions of stars\n\nover billions of years";
+            else if (elapsed >= 24.5 && elapsed < 26) {
+                currentText = "over billions of years";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 26 && elapsed < 30) {
-                // 26-30s: Hold complete stars message
-                currentText = "amongst trillions and trillions of stars\n\nover billions of years";
+            else if (elapsed >= 26 && elapsed < 27.5) {
+                currentText = "over billions of years";
+                targetOpacity = 0;
+            }
+            // Message 7: Life message (27.5-32s)
+            else if (elapsed >= 27.5 && elapsed < 29) {
+                currentText = "to be alive, and to get\nto spend this life with you";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 30 && elapsed < 31) {
-                // 30-31s: Fade to life message
-                currentText = "to be alive, and to get to spend this life with you";
+            else if (elapsed >= 29 && elapsed < 30.5) {
+                currentText = "to be alive, and to get\nto spend this life with you";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 31 && elapsed < 34) {
-                // 31-34s: Hold life message
-                currentText = "to be alive, and to get to spend this life with you";
+            else if (elapsed >= 30.5 && elapsed < 32) {
+                currentText = "to be alive, and to get\nto spend this life with you";
+                targetOpacity = 0;
+            }
+            // Message 8: Unlikely message (32-37s)
+            else if (elapsed >= 32 && elapsed < 33.5) {
+                currentText = "is so incredibly,\nunfathomably unlikely";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 34 && elapsed < 35) {
-                // 34-35s: Add unlikely part
-                currentText = "to be alive, and to get to spend this life with you\n\nis so incredibly, unfathomably unlikely";
+            else if (elapsed >= 33.5 && elapsed < 35.5) {
+                currentText = "is so incredibly,\nunfathomably unlikely";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 35 && elapsed < 39) {
-                // 35-39s: Hold complete unlikely message
-                currentText = "to be alive, and to get to spend this life with you\n\nis so incredibly, unfathomably unlikely";
+            else if (elapsed >= 35.5 && elapsed < 37) {
+                currentText = "is so incredibly,\nunfathomably unlikely";
+                targetOpacity = 0;
+            }
+            // Message 9: Impossible chance (37-42s)
+            else if (elapsed >= 37 && elapsed < 38.5) {
+                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 39 && elapsed < 40) {
-                // 39-40s: Fade to impossible chance
-                currentText = "and yet here I am to get the impossible";
+            else if (elapsed >= 38.5 && elapsed < 40.5) {
+                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 40 && elapsed < 42) {
-                // 40-42s: Hold impossible message
-                currentText = "and yet here I am to get the impossible";
+            else if (elapsed >= 40.5 && elapsed < 42) {
+                currentText = "and yet here I am to get\nthe impossible chance\nto get to know you";
+                targetOpacity = 0;
+            }
+            // Message 10: Feelings (42-47s)
+            else if (elapsed >= 42 && elapsed < 43.5) {
+                currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 42 && elapsed < 43) {
-                // 42-43s: Add chance part
-                currentText = "and yet here I am to get the impossible\n\nchance to get to know you";
+            else if (elapsed >= 43.5 && elapsed < 45.5) {
+                currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 43 && elapsed < 47) {
-                // 43-47s: Hold complete chance message
-                currentText = "and yet here I am to get the impossible\n\nchance to get to know you";
-                targetOpacity = 1;
+            else if (elapsed >= 45.5 && elapsed < 47) {
+                currentText = "I have feelings for you,\nmore than all the time\nand space in the universe\ncan contain";
+                targetOpacity = 0;
             }
-            else if (elapsed >= 47 && elapsed < 48) {
-                // 47-48s: Fade to feelings (emotional climax)
-                currentText = "I have feelings for you";
-                targetOpacity = 1;
-            }
-            else if (elapsed >= 48 && elapsed < 50) {
-                // 48-50s: Hold feelings
-                currentText = "I have feelings for you";
-                targetOpacity = 1;
-            }
-            else if (elapsed >= 50 && elapsed < 51) {
-                // 50-51s: Add more than part
-                currentText = "I have feelings for you, more than\n\nall the time and space in the universe can contain";
-                targetOpacity = 1;
-            }
-            else if (elapsed >= 51 && elapsed < 55) {
-                // 51-55s: Hold complete feelings message
-                currentText = "I have feelings for you, more than\n\nall the time and space in the universe can contain";
-                targetOpacity = 1;
-            }
-            else if (elapsed >= 55 && elapsed < 56) {
-                // 55-56s: Fade to final message
+            // Message 11: You mean a lot (47-52s)
+            else if (elapsed >= 47 && elapsed < 48.5) {
                 currentText = "You mean a lot to me";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 56 && elapsed < 60) {
-                // 56-60s: Hold first "You mean a lot"
+            else if (elapsed >= 48.5 && elapsed < 50.5) {
                 currentText = "You mean a lot to me";
                 targetOpacity = 1;
             }
-            else if (elapsed >= 60 && elapsed < 61) {
-                // 60-61s: Brief dim for emphasis
+            else if (elapsed >= 50.5 && elapsed < 52) {
                 currentText = "You mean a lot to me";
-                targetOpacity = 0.4;
+                targetOpacity = 0;
             }
-            else if (elapsed >= 61) {
-                // 61s+: Final bright emphasis + button
-                currentText = "You mean a lot to me";
+            // Message 12: Research message (52-57s)
+            else if (elapsed >= 52 && elapsed < 53.5) {
+                currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
                 targetOpacity = 1;
-                
+            }
+            else if (elapsed >= 53.5 && elapsed < 55.5) {
+                currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 55.5 && elapsed < 57) {
+                currentText = "Ohya tahukah kamu,\nriset menunjukkan orang\nyang keseringan duduk,\n98% mengalami kesemutan";
+                targetOpacity = 0;
+            }
+            // Message 13: Walking invitation (57-62s)
+            else if (elapsed >= 57 && elapsed < 58.5) {
+                currentText = "makanya itu yuk kita jalan :)";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 58.5 && elapsed < 60.5) {
+                currentText = "makanya itu yuk kita jalan :)";
+                targetOpacity = 1;
+            }
+            else if (elapsed >= 60.5 && elapsed < 62) {
+                currentText = "makanya itu yuk kita jalan :)";
+                targetOpacity = 0;
+            }
+            else if (elapsed >= 62) {
+                // Show button after all messages
                 if (!buttonCreated) {
                     createButton();
                     buttonCreated = true;
                 }
+                targetOpacity = 0;
             }
 
-            // SMOOTH 1-SECOND FADE LOGIC
+            // SMOOTH FADE LOGIC
             const fadeStep = 0.016; // 60fps smooth fade
             if (Math.abs(textOpacity - targetOpacity) > fadeStep) {
                 if (textOpacity < targetOpacity) {
@@ -773,7 +763,7 @@
                 context.fillStyle = `rgba(255, 105, 180, ${finalOpacity})`;
                 
                 // Add breathing effect to shadow
-                context.shadowBlur = 30 + Math.sin(elapsed * 2) * 8;
+                context.shadowBlur = 20 + Math.sin(elapsed * 2) * 5;
                 
                 if (currentText.includes('\n')) {
                     const lines = currentText.split('\n').filter(line => line.trim());
@@ -838,27 +828,16 @@
                     newButton.style.background = "linear-gradient(45deg, #4caf50, #8bc34a, #cddc39)";
                     newButton.style.animation = "successPulse 0.5s ease";
                     
-                    // Show surprise gallery immediately (NO ALERTS)
+                    // Show surprise gallery immediately
                     setTimeout(() => {
                         surpriseGallery.classList.add('show');
                         console.log("🎉 Beat-synced surprise gallery activated!");
                     }, 500);
-                    
-                    // Show sweet text overlay
-                    setTimeout(() => {
-                        surpriseText.innerHTML = "💕 Semua moment indah kita bersama 💕";
-                        surpriseText.classList.add('show');
-                        
-                        // Hide text after 4 seconds
-                        setTimeout(() => {
-                            surpriseText.classList.remove('show');
-                        }, 4000);
-                    }, 1000);
                 }
             });
             
             document.body.appendChild(newButton);
-            console.log("✅ Beat-synced surprise button created (no alerts)");
+            console.log("✅ Beat-synced surprise button created");
         }
 
         function draw() {
