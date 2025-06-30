@@ -198,20 +198,20 @@
             z-index: 25;
         }
 
-        /* Different circular photo sizes and positions - now with 8 photos */
+        /* Different circular photo sizes and positions */
         .surprise-1 {
             width: 160px;
             height: 160px;
-            top: 8%;
-            left: 5%;
+            top: 12%;
+            left: 8%;
             animation-delay: 0.3s;
         }
 
         .surprise-2 {
             width: 200px;
             height: 200px;
-            top: 10%;
-            right: 8%;
+            top: 15%;
+            right: 10%;
             animation-delay: 0.6s;
         }
 
@@ -219,7 +219,7 @@
             width: 140px;
             height: 140px;
             bottom: 25%;
-            left: 8%;
+            left: 12%;
             animation-delay: 0.9s;
         }
 
@@ -227,127 +227,24 @@
             width: 180px;
             height: 180px;
             bottom: 20%;
-            right: 5%;
+            right: 8%;
             animation-delay: 1.2s;
         }
 
         .surprise-5 {
             width: 120px;
             height: 120px;
-            top: 45%;
-            left: 3%;
+            top: 50%;
+            left: 5%;
             animation-delay: 1.5s;
         }
 
         .surprise-6 {
             width: 170px;
             height: 170px;
-            top: 50%;
-            right: 12%;
+            top: 55%;
+            right: 15%;
             animation-delay: 1.8s;
-        }
-
-        /* NEW: Two additional photos in center area with labels */
-        .surprise-7 {
-            width: 150px;
-            height: 150px;
-            top: 30%;
-            left: 35%;
-            animation-delay: 2.1s;
-            border: 5px solid rgba(255, 215, 0, 0.8); /* Gold border for special photo */
-        }
-
-        .surprise-8 {
-            width: 160px;
-            height: 160px;
-            top: 35%;
-            right: 30%;
-            animation-delay: 2.4s;
-            border: 5px solid rgba(255, 215, 0, 0.8); /* Gold border for special photo */
-        }
-
-        /* Photo labels for special photos - FIXED VERSION */
-        .photo-label {
-            position: absolute !important;
-            bottom: -45px !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            color: #FFFF00 !important; /* Bright yellow for maximum visibility */
-            font-family: "Comic Sans MS", cursive, sans-serif !important;
-            font-size: 20px !important;
-            font-weight: 900 !important; /* Extra bold */
-            text-shadow: 
-                0 0 3px #000000,
-                0 0 6px #000000,
-                0 0 9px #FFD700,
-                0 0 12px #FFD700,
-                0 0 15px #FFD700,
-                3px 3px 6px #000000 !important;
-            text-align: center !important;
-            opacity: 1 !important; /* Force visible */
-            animation: labelPulse 3s ease infinite !important;
-            background: rgba(0, 0, 0, 0.95) !important;
-            padding: 10px 20px !important;
-            border-radius: 25px !important;
-            border: 4px solid #FFD700 !important;
-            white-space: nowrap !important;
-            z-index: 9999 !important;
-            display: block !important;
-            visibility: visible !important;
-            pointer-events: none !important;
-            box-shadow: 
-                0 0 10px rgba(255, 215, 0, 0.8),
-                0 0 20px rgba(255, 215, 0, 0.6),
-                inset 0 0 10px rgba(255, 215, 0, 0.2) !important;
-        }
-
-        /* New slide-in animation for floating labels */
-        @keyframes labelSlideIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px) scale(0.8);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateX(-50%) translateY(-10px) scale(0.9);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
-            }
-        }
-
-        /* Responsive adjustments for floating labels */
-        @media (max-width: 768px) {
-            #label-tukang-kebun {
-                top: calc(28% + 130px) !important;
-                left: calc(30% + 55px) !important;
-                font-size: 14px !important;
-                padding: 6px 12px !important;
-            }
-            
-            #label-princess {
-                top: calc(32% + 140px) !important;
-                right: calc(25% - 60px) !important;
-                font-size: 14px !important;
-                padding: 6px 12px !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #label-tukang-kebun {
-                top: calc(28% + 105px) !important;
-                left: calc(30% + 42px) !important;
-                font-size: 12px !important;
-                padding: 4px 8px !important;
-            }
-            
-            #label-princess {
-                top: calc(32% + 115px) !important;
-                right: calc(25% - 45px) !important;
-                font-size: 12px !important;
-                padding: 4px 8px !important;
-            }
         }
 
         @keyframes surprisePhotoIn {
@@ -485,18 +382,6 @@
             .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; }
             .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; }
             .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; }
-            .surprise-7 { width: 110px; height: 110px; top: 28%; left: 30%; }
-            .surprise-8 { width: 120px; height: 120px; top: 32%; right: 25%; }
-
-            /* Adjust photo labels for mobile - FORCED VISIBILITY */
-            .photo-label {
-                font-size: 16px !important;
-                padding: 8px 16px !important;
-                bottom: -40px !important;
-                opacity: 1 !important;
-                display: block !important;
-                visibility: visible !important;
-            }
         }
 
         @media (max-width: 480px) {
@@ -523,18 +408,6 @@
             .surprise-4 { width: 100px; height: 100px; }
             .surprise-5 { width: 70px; height: 70px; }
             .surprise-6 { width: 85px; height: 85px; }
-            .surprise-7 { width: 85px; height: 85px; }
-            .surprise-8 { width: 90px; height: 90px; }
-
-            /* Smaller labels for small mobile - FORCED VISIBILITY */
-            .photo-label {
-                font-size: 14px !important;
-                padding: 6px 12px !important;
-                bottom: -35px !important;
-                opacity: 1 !important;
-                display: block !important;
-                visibility: visible !important;
-            }
         }
     </style>
 </head>
@@ -548,7 +421,7 @@
 
     <canvas id="starfield"></canvas>
 
-    <!-- SURPRISE PHOTO GALLERY - Now with 8 photos and FIXED labels -->
+    <!-- SURPRISE PHOTO GALLERY -->
     <div class="surprise-gallery" id="surpriseGallery">
         <div class="surprise-photo surprise-1">
             <img src="assets/images/1.jpeg" alt="Memory 1" loading="lazy">
@@ -568,66 +441,6 @@
         <div class="surprise-photo surprise-6">
             <img src="assets/images/6.jpeg" alt="Memory 6" loading="lazy">
         </div>
-        <!-- FIXED: Two additional photos with FLOATING labels -->
-        <div class="surprise-photo surprise-7">
-            <img src="assets/images/8.jpeg" alt="Special Memory - You" loading="lazy">
-        </div>
-        <div class="surprise-photo surprise-8">
-            <img src="assets/images/7.jpeg" alt="Special Memory - Her" loading="lazy">
-        </div>
-        
-        <!-- FLOATING LABELS - Separate elements for guaranteed visibility -->
-        <div id="label-tukang-kebun" style="
-            position: absolute;
-            top: calc(30% + 170px);
-            left: calc(35% + 75px);
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-family: 'Comic Sans MS', cursive;
-            font-size: 18px;
-            font-weight: bold;
-            white-space: nowrap;
-            z-index: 50000;
-            border: 4px solid #FFD700;
-            box-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.8),
-                0 4px 15px rgba(0,0,0,0.6);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            opacity: 0;
-            display: block;
-            visibility: visible;
-            pointer-events: none;
-            animation: labelSlideIn 2s ease 4s forwards;
-        ">🌱 Tukang Kebun 🌱</div>
-        
-        <div id="label-princess" style="
-            position: absolute;
-            top: calc(35% + 180px);
-            right: calc(30% - 80px);
-            transform: translateX(50%);
-            background: linear-gradient(45deg, #FF1493, #FF69B4);
-            color: #FFF;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-family: 'Comic Sans MS', cursive;
-            font-size: 18px;
-            font-weight: bold;
-            white-space: nowrap;
-            z-index: 50000;
-            border: 4px solid #FF1493;
-            box-shadow: 
-                0 0 20px rgba(255, 20, 147, 0.8),
-                0 4px 15px rgba(0,0,0,0.6);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            opacity: 0;
-            display: block;
-            visibility: visible;
-            pointer-events: none;
-            animation: labelSlideIn 2s ease 4.5s forwards;
-        ">👑 Princess 👑</div>
     </div>
 
     <!-- THANK YOU OVERLAY -->
@@ -820,7 +633,7 @@
             context.shadowOffsetX = 0;
             context.shadowOffsetY = 0;
 
-            // UPDATED TIMELINE: Merged messages and updated text
+            // TIMELINE: 2s fade in + 5s display + 2s fade out = 9s per message
             let currentText = "";
             let targetOpacity = 0;
 
@@ -879,69 +692,69 @@
                 currentText = "everyday I cannot believe\n\nhow lucky I am";
                 targetOpacity = Math.max(0, 1 - (elapsed - 40) / 2); // 2s fade out
             }
-            // MERGED Message 5: Stars and years combined (42-51s)
+            // Message 5: Stars message (42-51s)
             else if (elapsed >= 42 && elapsed < 44) {
-                currentText = "amongst trillions and\n\ntrillions of stars,\n\nover billions of years";
+                currentText = "amongst trillions and\n\ntrillions of stars..";
                 targetOpacity = Math.min(1, (elapsed - 42) / 2); // 2s fade in
             }
             else if (elapsed >= 44 && elapsed < 49) {
-                currentText = "amongst trillions and\n\ntrillions of stars,\n\nover billions of years";
+                currentText = "amongst trillions and\n\ntrillions of stars..";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 49 && elapsed < 51) {
-                currentText = "amongst trillions and\n\ntrillions of stars,\n\nover billions of years";
+                currentText = "amongst trillions and\n\ntrillions of stars..";
                 targetOpacity = Math.max(0, 1 - (elapsed - 49) / 2); // 2s fade out
             }
-            // Message 6: Life message (51-60s)
+            // Message 6: Years message (51-60s)
             else if (elapsed >= 51 && elapsed < 53) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
+                currentText = "and over billions of years..";
                 targetOpacity = Math.min(1, (elapsed - 51) / 2); // 2s fade in
             }
             else if (elapsed >= 53 && elapsed < 58) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
+                currentText = "and over billions of years..";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 58 && elapsed < 60) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
+                currentText = "and over billions of years..";
                 targetOpacity = Math.max(0, 1 - (elapsed - 58) / 2); // 2s fade out
             }
-            // Message 7: Unlikely message (60-69s)
+            // Message 7: Life message (60-69s)
             else if (elapsed >= 60 && elapsed < 62) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
+                currentText = "to be alive,\n\nand to share moments like this with you";
                 targetOpacity = Math.min(1, (elapsed - 60) / 2); // 2s fade in
             }
             else if (elapsed >= 62 && elapsed < 67) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
+                currentText = "to be alive,\n\nand to share moments like this with you";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 67 && elapsed < 69) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
+                currentText = "to be alive,\n\nand to share moments like this with you";
                 targetOpacity = Math.max(0, 1 - (elapsed - 67) / 2); // 2s fade out
             }
-            // UPDATED Message 8: Impossible chance (69-78s)
+            // Message 8: Unlikely message (69-78s)
             else if (elapsed >= 69 && elapsed < 71) {
-                currentText = "and yet here I am to get\n\nthe impossible";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = Math.min(1, (elapsed - 69) / 2); // 2s fade in
             }
             else if (elapsed >= 71 && elapsed < 76) {
-                currentText = "and yet here I am to get\n\nthe impossible";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 76 && elapsed < 78) {
-                currentText = "and yet here I am to get\n\nthe impossible";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = Math.max(0, 1 - (elapsed - 76) / 2); // 2s fade out
             }
-            // UPDATED Message 9: Chance to know you (78-87s)
+            // Message 9: Impossible chance (78-87s)
             else if (elapsed >= 78 && elapsed < 80) {
-                currentText = "chance to get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
                 targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
             }
             else if (elapsed >= 80 && elapsed < 85) {
-                currentText = "chance to get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 85 && elapsed < 87) {
-                currentText = "chance to get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
                 targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
             }
             // Message 10: Feelings (87-96s)
@@ -1101,7 +914,7 @@
                         setTimeout(() => {
                             thankYouOverlay.classList.add('show');
                             console.log("💕 Thank you message displayed!");
-                        }, 6000);
+                        }, 7000);
                         
                     }, 500);
                 }
