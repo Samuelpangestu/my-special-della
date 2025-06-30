@@ -565,7 +565,7 @@
                 targetOpacity = 0;
             } 
             // Message 1: Hai del! (6-15s)
-            else if (elapsed >= 3 && elapsed < 8) {
+            else if (elapsed >= 6 && elapsed < 8) {
                 currentText = "Hai del!";
                 targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
             }
@@ -657,28 +657,28 @@
             }
             // Message 8: Unlikely message (69-78s)
             else if (elapsed >= 69 && elapsed < 71) {
-                currentText = "is so incredibly,\n\nunfathomably unlikely";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = Math.min(1, (elapsed - 69) / 2); // 2s fade in
             }
             else if (elapsed >= 71 && elapsed < 76) {
-                currentText = "is so incredibly,\n\nunfathomably unlikely";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 76 && elapsed < 78) {
-                currentText = "is so incredibly,\n\nunfathomably unlikely";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = Math.max(0, 1 - (elapsed - 76) / 2); // 2s fade out
             }
             // Message 9: Impossible chance (78-87s)
             else if (elapsed >= 78 && elapsed < 80) {
-                currentText = "and yet here I am to get\n\nthe impossible chance\n\nto get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\nmemberanikan diri to get\n\nthe impossible chance\n\nto get to know you";
                 targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
             }
             else if (elapsed >= 80 && elapsed < 85) {
-                currentText = "and yet here I am to get\n\nthe impossible chance\n\nto get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\nmemberanikan diri to get\n\nthe impossible chance\n\nto get to know you";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 85 && elapsed < 87) {
-                currentText = "and yet here I am to get\n\nthe impossible chance\n\nto get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\nmemberanikan diri to get\n\nthe impossible chance\n\nto get to know you";
                 targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
             }
             // Message 10: Feelings (87-96s)
