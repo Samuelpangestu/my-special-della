@@ -592,15 +592,15 @@
             }
             // Message 3: Permission message (24-33s)
             else if (elapsed >= 24 && elapsed < 26) {
-                currentText = "Izinkan aku bilang\n\nsesuatu ke kamu";
+                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
                 targetOpacity = Math.min(1, (elapsed - 24) / 2); // 2s fade in
             }
             else if (elapsed >= 26 && elapsed < 31) {
-                currentText = "Izinkan aku bilang\n\nsesuatu ke kamu";
+                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 31 && elapsed < 33) {
-                currentText = "Izinkan aku bilang\n\nsesuatu ke kamu";
+                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
                 targetOpacity = Math.max(0, 1 - (elapsed - 31) / 2); // 2s fade out
             }
             // Message 4: Lucky message (33-42s)
@@ -618,11 +618,11 @@
             }
             // Message 5: Stars message (42-51s)
             else if (elapsed >= 42 && elapsed < 44) {
-                currentText = "amongst trillions and\n\ntrillions of stars";
+                currentText = "amongst trillions and\n\ntrillions of stars..";
                 targetOpacity = Math.min(1, (elapsed - 42) / 2); // 2s fade in
             }
             else if (elapsed >= 44 && elapsed < 49) {
-                currentText = "amongst trillions and\n\ntrillions of stars";
+                currentText = "amongst trillions and\n\ntrillions of stars..";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 49 && elapsed < 51) {
@@ -631,15 +631,15 @@
             }
             // Message 6: Years message (51-60s)
             else if (elapsed >= 51 && elapsed < 53) {
-                currentText = "over billions of years";
+                currentText = "and over billions of years..";
                 targetOpacity = Math.min(1, (elapsed - 51) / 2); // 2s fade in
             }
             else if (elapsed >= 53 && elapsed < 58) {
-                currentText = "and over billions of years";
+                currentText = "and over billions of years..";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 58 && elapsed < 60) {
-                currentText = "and over billions of years";
+                currentText = "and over billions of years..";
                 targetOpacity = Math.max(0, 1 - (elapsed - 58) / 2); // 2s fade out
             }
             // Message 7: Life message (60-69s)
