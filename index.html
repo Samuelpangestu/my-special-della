@@ -746,15 +746,15 @@
             }
             // Message 9: Impossible chance (78-87s)
             else if (elapsed >= 78 && elapsed < 80) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
                 targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
             }
             else if (elapsed >= 80 && elapsed < 85) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 85 && elapsed < 87) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage to get\n\nthe impossible chance\n\nto get to know you";
+                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
                 targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
             }
             // Message 10: Feelings (87-96s)
@@ -811,15 +811,15 @@
             }
             // Message 14: Signature (126-135s)
             else if (elapsed >= 126 && elapsed < 128) {
-                currentText = "Your sincere Samuel";
+                currentText = "From your sincere admirer,\n\nSamuel";
                 targetOpacity = Math.min(1, (elapsed - 126) / 2); // 2s fade in
             }
             else if (elapsed >= 128 && elapsed < 133) {
-                currentText = "Your sincere Samuel";
+                currentText = "From your sincere admirer,\n\nSamuel";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 133 && elapsed < 135) {
-                currentText = "Your sincere Samuel";
+                currentText = "From your sincere admirer,\n\nSamuel";
                 targetOpacity = Math.max(0, 1 - (elapsed - 133) / 2); // 2s fade out
             }
             else if (elapsed >= 135) {
