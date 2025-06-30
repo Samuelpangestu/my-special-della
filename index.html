@@ -565,11 +565,11 @@
                 targetOpacity = 0;
             } 
             // Message 1: Hai del! (6-15s)
-            else if (elapsed >= 3 && elapsed < 8) {
+            else if (elapsed >= 3 && elapsed < 6) {
                 currentText = "Hai del!";
                 targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
             }
-            else if (elapsed >= 8 && elapsed < 13) {
+            else if (elapsed >= 6 && elapsed < 13) {
                 currentText = "Hai del!";
                 targetOpacity = 1; // 5s display
             }
