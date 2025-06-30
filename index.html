@@ -198,20 +198,20 @@
             z-index: 25;
         }
 
-        /* Different circular photo sizes and positions */
+        /* Different circular photo sizes and positions - now with 8 photos */
         .surprise-1 {
             width: 160px;
             height: 160px;
-            top: 12%;
-            left: 8%;
+            top: 8%;
+            left: 5%;
             animation-delay: 0.3s;
         }
 
         .surprise-2 {
             width: 200px;
             height: 200px;
-            top: 15%;
-            right: 10%;
+            top: 10%;
+            right: 8%;
             animation-delay: 0.6s;
         }
 
@@ -219,7 +219,7 @@
             width: 140px;
             height: 140px;
             bottom: 25%;
-            left: 12%;
+            left: 8%;
             animation-delay: 0.9s;
         }
 
@@ -227,24 +227,115 @@
             width: 180px;
             height: 180px;
             bottom: 20%;
-            right: 8%;
+            right: 5%;
             animation-delay: 1.2s;
         }
 
         .surprise-5 {
             width: 120px;
             height: 120px;
-            top: 50%;
-            left: 5%;
+            top: 45%;
+            left: 3%;
             animation-delay: 1.5s;
         }
 
         .surprise-6 {
             width: 170px;
             height: 170px;
-            top: 55%;
-            right: 15%;
+            top: 50%;
+            right: 12%;
             animation-delay: 1.8s;
+        }
+
+        /* NEW: Two additional photos in center area with labels */
+        .surprise-7 {
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            left: 35%;
+            animation-delay: 2.1s;
+            border: 5px solid rgba(255, 215, 0, 0.8); /* Gold border for special photo */
+        }
+
+        .surprise-8 {
+            width: 160px;
+            height: 160px;
+            top: 35%;
+            right: 30%;
+            animation-delay: 2.4s;
+            border: 5px solid rgba(255, 215, 0, 0.8); /* Gold border for special photo */
+        }
+
+        /* Photo labels for special photos - FIXED VERSION */
+        .photo-label {
+            position: absolute !important;
+            bottom: -45px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            color: #FFFF00 !important; /* Bright yellow for maximum visibility */
+            font-family: "Comic Sans MS", cursive, sans-serif !important;
+            font-size: 20px !important;
+            font-weight: 900 !important; /* Extra bold */
+            text-shadow: 
+                0 0 3px #000000,
+                0 0 6px #000000,
+                0 0 9px #FFD700,
+                0 0 12px #FFD700,
+                0 0 15px #FFD700,
+                3px 3px 6px #000000 !important;
+            text-align: center !important;
+            opacity: 1 !important; /* Force visible */
+            animation: labelPulse 3s ease infinite !important;
+            background: rgba(0, 0, 0, 0.95) !important;
+            padding: 10px 20px !important;
+            border-radius: 25px !important;
+            border: 4px solid #FFD700 !important;
+            white-space: nowrap !important;
+            z-index: 9999 !important;
+            display: block !important;
+            visibility: visible !important;
+            pointer-events: none !important;
+            box-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.6),
+                inset 0 0 10px rgba(255, 215, 0, 0.2) !important;
+        }
+
+        /* New pulsing animation for labels */
+        @keyframes labelPulse {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+                text-shadow: 
+                    0 0 3px #000000,
+                    0 0 6px #000000,
+                    0 0 9px #FFD700,
+                    0 0 12px #FFD700,
+                    0 0 15px #FFD700,
+                    3px 3px 6px #000000;
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.05);
+                text-shadow: 
+                    0 0 5px #000000,
+                    0 0 10px #000000,
+                    0 0 15px #FFD700,
+                    0 0 20px #FFD700,
+                    0 0 25px #FFD700,
+                    3px 3px 8px #000000;
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+                text-shadow: 
+                    0 0 3px #000000,
+                    0 0 6px #000000,
+                    0 0 9px #FFD700,
+                    0 0 12px #FFD700,
+                    0 0 15px #FFD700,
+                    3px 3px 6px #000000;
+            }
         }
 
         @keyframes surprisePhotoIn {
@@ -382,6 +473,18 @@
             .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; }
             .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; }
             .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; }
+            .surprise-7 { width: 110px; height: 110px; top: 28%; left: 30%; }
+            .surprise-8 { width: 120px; height: 120px; top: 32%; right: 25%; }
+
+            /* Adjust photo labels for mobile - FORCED VISIBILITY */
+            .photo-label {
+                font-size: 16px !important;
+                padding: 8px 16px !important;
+                bottom: -40px !important;
+                opacity: 1 !important;
+                display: block !important;
+                visibility: visible !important;
+            }
         }
 
         @media (max-width: 480px) {
@@ -408,6 +511,18 @@
             .surprise-4 { width: 100px; height: 100px; }
             .surprise-5 { width: 70px; height: 70px; }
             .surprise-6 { width: 85px; height: 85px; }
+            .surprise-7 { width: 85px; height: 85px; }
+            .surprise-8 { width: 90px; height: 90px; }
+
+            /* Smaller labels for small mobile - FORCED VISIBILITY */
+            .photo-label {
+                font-size: 14px !important;
+                padding: 6px 12px !important;
+                bottom: -35px !important;
+                opacity: 1 !important;
+                display: block !important;
+                visibility: visible !important;
+            }
         }
     </style>
 </head>
@@ -421,7 +536,7 @@
 
     <canvas id="starfield"></canvas>
 
-    <!-- SURPRISE PHOTO GALLERY -->
+    <!-- SURPRISE PHOTO GALLERY - Now with 8 photos -->
     <div class="surprise-gallery" id="surpriseGallery">
         <div class="surprise-photo surprise-1">
             <img src="assets/images/1.jpeg" alt="Memory 1" loading="lazy">
@@ -440,6 +555,15 @@
         </div>
         <div class="surprise-photo surprise-6">
             <img src="assets/images/6.jpeg" alt="Memory 6" loading="lazy">
+        </div>
+        <!-- NEW: Two additional photos in center area with gold borders and ALWAYS VISIBLE labels -->
+        <div class="surprise-photo surprise-7">
+            <img src="assets/images/8.jpeg" alt="Special Memory - You" loading="lazy">
+            <div class="photo-label">🌱 Tukang Kebun 🌱</div>
+        </div>
+        <div class="surprise-photo surprise-8">
+            <img src="assets/images/7.jpeg" alt="Special Memory - Her" loading="lazy">
+            <div class="photo-label">👑 Princess 👑</div>
         </div>
     </div>
 
@@ -633,7 +757,7 @@
             context.shadowOffsetX = 0;
             context.shadowOffsetY = 0;
 
-            // TIMELINE: 2s fade in + 5s display + 2s fade out = 9s per message
+            // UPDATED TIMELINE: Merged messages and updated text
             let currentText = "";
             let targetOpacity = 0;
 
@@ -692,69 +816,69 @@
                 currentText = "everyday I cannot believe\n\nhow lucky I am";
                 targetOpacity = Math.max(0, 1 - (elapsed - 40) / 2); // 2s fade out
             }
-            // Message 5: Stars message (42-51s)
+            // MERGED Message 5: Stars and years combined (42-51s)
             else if (elapsed >= 42 && elapsed < 44) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
+                currentText = "amongst trillions and\n\ntrillions of stars,\n\nover billions of years";
                 targetOpacity = Math.min(1, (elapsed - 42) / 2); // 2s fade in
             }
             else if (elapsed >= 44 && elapsed < 49) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
+                currentText = "amongst trillions and\n\ntrillions of stars,\n\nover billions of years";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 49 && elapsed < 51) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
+                currentText = "amongst trillions and\n\ntrillions of stars,\n\nover billions of years";
                 targetOpacity = Math.max(0, 1 - (elapsed - 49) / 2); // 2s fade out
             }
-            // Message 6: Years message (51-60s)
+            // Message 6: Life message (51-60s)
             else if (elapsed >= 51 && elapsed < 53) {
-                currentText = "and over billions of years..";
+                currentText = "to be alive,\n\nand to share moments like this with you";
                 targetOpacity = Math.min(1, (elapsed - 51) / 2); // 2s fade in
             }
             else if (elapsed >= 53 && elapsed < 58) {
-                currentText = "and over billions of years..";
+                currentText = "to be alive,\n\nand to share moments like this with you";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 58 && elapsed < 60) {
-                currentText = "and over billions of years..";
+                currentText = "to be alive,\n\nand to share moments like this with you";
                 targetOpacity = Math.max(0, 1 - (elapsed - 58) / 2); // 2s fade out
             }
-            // Message 7: Life message (60-69s)
+            // Message 7: Unlikely message (60-69s)
             else if (elapsed >= 60 && elapsed < 62) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = Math.min(1, (elapsed - 60) / 2); // 2s fade in
             }
             else if (elapsed >= 62 && elapsed < 67) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 67 && elapsed < 69) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
+                currentText = "is so incredibly,\n\nunbelievably unlikely";
                 targetOpacity = Math.max(0, 1 - (elapsed - 67) / 2); // 2s fade out
             }
-            // Message 8: Unlikely message (69-78s)
+            // UPDATED Message 8: Impossible chance (69-78s)
             else if (elapsed >= 69 && elapsed < 71) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
+                currentText = "and yet here I am to get\n\nthe impossible";
                 targetOpacity = Math.min(1, (elapsed - 69) / 2); // 2s fade in
             }
             else if (elapsed >= 71 && elapsed < 76) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
+                currentText = "and yet here I am to get\n\nthe impossible";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 76 && elapsed < 78) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
+                currentText = "and yet here I am to get\n\nthe impossible";
                 targetOpacity = Math.max(0, 1 - (elapsed - 76) / 2); // 2s fade out
             }
-            // Message 9: Impossible chance (78-87s)
+            // UPDATED Message 9: Chance to know you (78-87s)
             else if (elapsed >= 78 && elapsed < 80) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
+                currentText = "chance to get to know you";
                 targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
             }
             else if (elapsed >= 80 && elapsed < 85) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
+                currentText = "chance to get to know you";
                 targetOpacity = 1; // 5s display
             }
             else if (elapsed >= 85 && elapsed < 87) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
+                currentText = "chance to get to know you";
                 targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
             }
             // Message 10: Feelings (87-96s)
