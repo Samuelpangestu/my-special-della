@@ -1,871 +1,1106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Untuk Della yang Spesial">
-    <meta property="og:description" content="Kamu spesial di hatiku">
-    <meta property="og:image" content="https://i.imgur.com/zwk0Pbq.jpeg">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>" type="image/svg+xml" />  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Untuk Della yang Spesial" />
+    <meta property="og:description" content="Kamu spesial di hatiku" />
+    <meta property="og:image" content="https://i.imgur.com/zwk0Pbq.jpeg" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>"
+      type="image/svg+xml"
+    />
     <title>Untuk Della yang Spesial ❤️</title>
-    
+
+    <!-- Google Analytics -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GMJ2J3FCWK"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-GMJ2J3FCWK");
+    </script>
+
     <style>
-        /* FORCE FULLSCREEN CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* FORCE FULLSCREEN CSS */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
 
-        body {
-            width: 100vw !important;
-            height: 100vh !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow: hidden !important;
-            font-family: "Comic Sans MS", cursive, sans-serif;
-            cursor: pointer;
-            background: #000 !important;
-            position: relative;
-        }
+      body {
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        cursor: pointer;
+        background: #000 !important;
+        position: relative;
+      }
 
-        canvas {
-            position: absolute !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a1a 100%) !important;
-            z-index: 1 !important;
-            display: block !important;
-        }
+      canvas {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: linear-gradient(
+          135deg,
+          #0a0a0a 0%,
+          #1a0a1a 50%,
+          #0a0a1a 100%
+        ) !important;
+        z-index: 1 !important;
+        display: block !important;
+      }
 
-        /* SPLASH SCREEN */
-        .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, #1a0a1a 0%, #2a1a2a 50%, #1a0a2a 100%);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            transition: opacity 1s ease-out;
-        }
+      /* SPLASH SCREEN */
+      .splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #1a0a1a 0%,
+          #2a1a2a 50%,
+          #1a0a2a 100%
+        );
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        transition: opacity 1s ease-out;
+      }
 
-        .splash-screen.hide {
-            opacity: 0;
-            pointer-events: none;
-        }
+      .splash-screen.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
 
+      .splash-title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        font-weight: bold;
+      }
+
+      .splash-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        opacity: 0.9;
+      }
+
+      .start-button {
+        background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
+        border: none;
+        color: white;
+        padding: 20px 40px;
+        font-size: 1.3rem;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+        animation: pulseGlow 2s infinite;
+        font-weight: bold;
+      }
+
+      .start-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 35px rgba(255, 23, 68, 0.6);
+      }
+
+      @keyframes pulseGlow {
+        0% {
+          box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+        }
+        50% {
+          box-shadow: 0 8px 35px rgba(255, 23, 68, 0.8);
+        }
+        100% {
+          box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+        }
+      }
+
+      /* MUSIC CONTROLS */
+      .music-control {
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 1000 !important;
+        background: rgba(255, 105, 180, 0.9) !important;
+        border: none;
+        border-radius: 50%;
+        width: 60px !important;
+        height: 60px !important;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block !important;
+      }
+
+      .music-control:hover {
+        background: rgba(255, 105, 180, 1) !important;
+        transform: scale(1.1);
+      }
+
+      .music-info {
+        position: fixed;
+        top: 90px;
+        right: 20px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        font-weight: bold;
+      }
+
+      .music-info.show {
+        opacity: 1;
+      }
+
+      audio {
+        display: none;
+      }
+
+      /* SURPRISE PHOTO GALLERY */
+      .surprise-gallery {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 15 !important;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 1.5s ease-in-out;
+        pointer-events: none;
+      }
+
+      .surprise-gallery.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      .surprise-photo {
+        position: absolute;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+        transition: all 0.5s ease;
+        opacity: 0;
+        animation: surprisePhotoIn 1.5s ease forwards;
+      }
+
+      .surprise-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .surprise-photo:hover {
+        transform: scale(1.15);
+        box-shadow: 0 15px 40px rgba(255, 105, 180, 0.8);
+        z-index: 25;
+      }
+
+      /* Different circular photo sizes and positions */
+      .surprise-1 {
+        width: 160px;
+        height: 160px;
+        top: 12%;
+        left: 8%;
+        animation-delay: 0.3s;
+      }
+
+      .surprise-2 {
+        width: 200px;
+        height: 200px;
+        top: 15%;
+        right: 10%;
+        animation-delay: 0.6s;
+      }
+
+      .surprise-3 {
+        width: 140px;
+        height: 140px;
+        bottom: 25%;
+        left: 12%;
+        animation-delay: 0.9s;
+      }
+
+      .surprise-4 {
+        width: 180px;
+        height: 180px;
+        bottom: 20%;
+        right: 8%;
+        animation-delay: 1.2s;
+      }
+
+      .surprise-5 {
+        width: 120px;
+        height: 120px;
+        top: 50%;
+        left: 5%;
+        animation-delay: 1.5s;
+      }
+
+      .surprise-6 {
+        width: 170px;
+        height: 170px;
+        top: 55%;
+        right: 15%;
+        animation-delay: 1.8s;
+      }
+
+      @keyframes surprisePhotoIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.3) rotate(180deg);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      /* THANK YOU MESSAGE OVERLAY */
+      .thank-you-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 50 !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: all 1s ease-in-out !important;
+        pointer-events: none !important;
+      }
+
+      .thank-you-overlay.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+      }
+
+      .thank-you-text {
+        color: white !important;
+        font-size: 2.5rem !important;
+        text-align: center !important;
+        font-family: "Comic Sans MS", cursive, sans-serif !important;
+        text-shadow: 0 0 20px rgba(255, 105, 180, 1) !important;
+        margin-bottom: 2rem !important;
+        font-weight: bold !important;
+        animation: thankYouGlow 2s infinite alternate !important;
+      }
+
+      .thank-you-subtitle {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.5rem !important;
+        text-align: center !important;
+        font-family: "Comic Sans MS", cursive, sans-serif !important;
+        text-shadow: 0 0 10px rgba(255, 105, 180, 0.5) !important;
+      }
+
+      @keyframes thankYouGlow {
+        0% {
+          text-shadow: 0 0 20px rgba(255, 105, 180, 1),
+            0 0 30px rgba(255, 105, 180, 0.8);
+        }
+        100% {
+          text-shadow: 0 0 30px rgba(255, 105, 180, 1),
+            0 0 40px rgba(255, 105, 180, 1);
+        }
+      }
+
+      /* BEAT-SYNCED ANIMATIONS */
+      @keyframes beatSyncButton {
+        0% {
+          background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
+          box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
+          transform: translateX(-50%) scale(1);
+        }
+        25% {
+          background: linear-gradient(45deg, #ff2955, #ec407a, #ab47bc);
+          box-shadow: 0 10px 30px rgba(255, 23, 68, 0.7);
+          transform: translateX(-50%) scale(1.02);
+        }
+        50% {
+          background: linear-gradient(45deg, #ff4569, #f06292, #ba68c8);
+          box-shadow: 0 12px 35px rgba(255, 23, 68, 0.8);
+          transform: translateX(-50%) scale(1.05);
+        }
+        75% {
+          background: linear-gradient(45deg, #ff2955, #ec407a, #ab47bc);
+          box-shadow: 0 10px 30px rgba(255, 23, 68, 0.7);
+          transform: translateX(-50%) scale(1.02);
+        }
+        100% {
+          background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
+          box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
+          transform: translateX(-50%) scale(1);
+        }
+      }
+
+      @keyframes successPulse {
+        0% {
+          transform: translateX(-50%) scale(1);
+        }
+        50% {
+          transform: translateX(-50%) scale(1.1);
+        }
+        100% {
+          transform: translateX(-50%) scale(1);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
         .splash-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
-            font-weight: bold;
+          font-size: 2.2rem;
         }
 
         .splash-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            opacity: 0.9;
+          font-size: 1.1rem;
         }
 
         .start-button {
-            background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
-            border: none;
-            color: white;
-            padding: 20px 40px;
-            font-size: 1.3rem;
-            font-family: "Comic Sans MS", cursive, sans-serif;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
-            animation: pulseGlow 2s infinite;
-            font-weight: bold;
+          padding: 15px 30px;
+          font-size: 1.1rem;
         }
 
-        .start-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(255, 23, 68, 0.6);
-        }
-
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
-            50% { box-shadow: 0 8px 35px rgba(255, 23, 68, 0.8); }
-            100% { box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4); }
-        }
-
-        /* MUSIC CONTROLS */
         .music-control {
-            position: fixed !important;
-            top: 20px !important;
-            right: 20px !important;
-            z-index: 1000 !important;
-            background: rgba(255, 105, 180, 0.9) !important;
-            border: none;
-            border-radius: 50%;
-            width: 60px !important;
-            height: 60px !important;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: block !important;
-        }
-
-        .music-control:hover {
-            background: rgba(255, 105, 180, 1) !important;
-            transform: scale(1.1);
-        }
-
-        .music-info {
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            font-weight: bold;
-        }
-
-        .music-info.show {
-            opacity: 1;
-        }
-
-        audio {
-            display: none;
-        }
-
-        /* SURPRISE PHOTO GALLERY */
-        .surprise-gallery {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            z-index: 15 !important;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 1.5s ease-in-out;
-            pointer-events: none;
-        }
-
-        .surprise-gallery.show {
-            opacity: 1 !important;
-            visibility: visible !important;
-        }
-
-        .surprise-photo {
-            position: absolute;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
-            transition: all 0.5s ease;
-            opacity: 0;
-            animation: surprisePhotoIn 1.5s ease forwards;
-        }
-
-        .surprise-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .surprise-photo:hover {
-            transform: scale(1.15);
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.8);
-            z-index: 25;
-        }
-
-        /* Different circular photo sizes and positions */
-        .surprise-1 {
-            width: 160px;
-            height: 160px;
-            top: 12%;
-            left: 8%;
-            animation-delay: 0.3s;
-        }
-
-        .surprise-2 {
-            width: 200px;
-            height: 200px;
-            top: 15%;
-            right: 10%;
-            animation-delay: 0.6s;
-        }
-
-        .surprise-3 {
-            width: 140px;
-            height: 140px;
-            bottom: 25%;
-            left: 12%;
-            animation-delay: 0.9s;
-        }
-
-        .surprise-4 {
-            width: 180px;
-            height: 180px;
-            bottom: 20%;
-            right: 8%;
-            animation-delay: 1.2s;
-        }
-
-        .surprise-5 {
-            width: 120px;
-            height: 120px;
-            top: 50%;
-            left: 5%;
-            animation-delay: 1.5s;
-        }
-
-        .surprise-6 {
-            width: 170px;
-            height: 170px;
-            top: 55%;
-            right: 15%;
-            animation-delay: 1.8s;
-        }
-
-        @keyframes surprisePhotoIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) rotate(180deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        /* THANK YOU MESSAGE OVERLAY */
-        .thank-you-overlay {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            z-index: 50 !important;
-            background: rgba(0, 0, 0, 0.8) !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-            transition: all 1s ease-in-out !important;
-            pointer-events: none !important;
-        }
-
-        .thank-you-overlay.show {
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: auto !important;
+          width: 50px !important;
+          height: 50px !important;
+          font-size: 16px;
         }
 
         .thank-you-text {
-            color: white !important;
-            font-size: 2.5rem !important;
-            text-align: center !important;
-            font-family: "Comic Sans MS", cursive, sans-serif !important;
-            text-shadow: 0 0 20px rgba(255, 105, 180, 1) !important;
-            margin-bottom: 2rem !important;
-            font-weight: bold !important;
-            animation: thankYouGlow 2s infinite alternate !important;
+          font-size: 1.8rem !important;
         }
 
         .thank-you-subtitle {
-            color: rgba(255, 255, 255, 0.9) !important;
-            font-size: 1.5rem !important;
-            text-align: center !important;
-            font-family: "Comic Sans MS", cursive, sans-serif !important;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5) !important;
+          font-size: 1.2rem !important;
         }
 
-        @keyframes thankYouGlow {
-            0% { 
-                text-shadow: 0 0 20px rgba(255, 105, 180, 1), 0 0 30px rgba(255, 105, 180, 0.8);
-            }
-            100% { 
-                text-shadow: 0 0 30px rgba(255, 105, 180, 1), 0 0 40px rgba(255, 105, 180, 1);
-            }
+        /* Smaller circular photos for mobile */
+        .surprise-1 {
+          width: 120px;
+          height: 120px;
+          top: 8%;
+          left: 5%;
+        }
+        .surprise-2 {
+          width: 140px;
+          height: 140px;
+          top: 12%;
+          right: 5%;
+        }
+        .surprise-3 {
+          width: 100px;
+          height: 100px;
+          bottom: 20%;
+          left: 8%;
+        }
+        .surprise-4 {
+          width: 130px;
+          height: 130px;
+          bottom: 25%;
+          right: 5%;
+        }
+        .surprise-5 {
+          width: 90px;
+          height: 90px;
+          top: 45%;
+          left: 3%;
+        }
+        .surprise-6 {
+          width: 110px;
+          height: 110px;
+          top: 50%;
+          right: 8%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .splash-title {
+          font-size: 1.8rem;
         }
 
-        /* BEAT-SYNCED ANIMATIONS */
-        @keyframes beatSyncButton {
-            0% { 
-                background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
-                box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
-                transform: translateX(-50%) scale(1);
-            }
-            25% { 
-                background: linear-gradient(45deg, #ff2955, #ec407a, #ab47bc);
-                box-shadow: 0 10px 30px rgba(255, 23, 68, 0.7);
-                transform: translateX(-50%) scale(1.02);
-            }
-            50% { 
-                background: linear-gradient(45deg, #ff4569, #f06292, #ba68c8);
-                box-shadow: 0 12px 35px rgba(255, 23, 68, 0.8);
-                transform: translateX(-50%) scale(1.05);
-            }
-            75% { 
-                background: linear-gradient(45deg, #ff2955, #ec407a, #ab47bc);
-                box-shadow: 0 10px 30px rgba(255, 23, 68, 0.7);
-                transform: translateX(-50%) scale(1.02);
-            }
-            100% { 
-                background: linear-gradient(45deg, #ff1744, #e91e63, #9c27b0);
-                box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
-                transform: translateX(-50%) scale(1);
-            }
+        .splash-subtitle {
+          font-size: 1rem;
         }
 
-        @keyframes successPulse {
-            0% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
-            100% { transform: translateX(-50%) scale(1); }
+        .thank-you-text {
+          font-size: 1.5rem !important;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .splash-title {
-                font-size: 2.2rem;
-            }
-
-            .splash-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .start-button {
-                padding: 15px 30px;
-                font-size: 1.1rem;
-            }
-
-            .music-control {
-                width: 50px !important;
-                height: 50px !important;
-                font-size: 16px;
-            }
-
-            .thank-you-text {
-                font-size: 1.8rem !important;
-            }
-
-            .thank-you-subtitle {
-                font-size: 1.2rem !important;
-            }
-
-            /* Smaller circular photos for mobile */
-            .surprise-1 { width: 120px; height: 120px; top: 8%; left: 5%; }
-            .surprise-2 { width: 140px; height: 140px; top: 12%; right: 5%; }
-            .surprise-3 { width: 100px; height: 100px; bottom: 20%; left: 8%; }
-            .surprise-4 { width: 130px; height: 130px; bottom: 25%; right: 5%; }
-            .surprise-5 { width: 90px; height: 90px; top: 45%; left: 3%; }
-            .surprise-6 { width: 110px; height: 110px; top: 50%; right: 8%; }
+        .thank-you-subtitle {
+          font-size: 1rem !important;
         }
 
-        @media (max-width: 480px) {
-            .splash-title {
-                font-size: 1.8rem;
-            }
-
-            .splash-subtitle {
-                font-size: 1rem;
-            }
-
-            .thank-you-text {
-                font-size: 1.5rem !important;
-            }
-
-            .thank-you-subtitle {
-                font-size: 1rem !important;
-            }
-
-            /* Even smaller for small mobile */
-            .surprise-1 { width: 90px; height: 90px; }
-            .surprise-2 { width: 110px; height: 110px; }
-            .surprise-3 { width: 80px; height: 80px; }
-            .surprise-4 { width: 100px; height: 100px; }
-            .surprise-5 { width: 70px; height: 70px; }
-            .surprise-6 { width: 85px; height: 85px; }
+        /* Even smaller for small mobile */
+        .surprise-1 {
+          width: 90px;
+          height: 90px;
         }
+        .surprise-2 {
+          width: 110px;
+          height: 110px;
+        }
+        .surprise-3 {
+          width: 80px;
+          height: 80px;
+        }
+        .surprise-4 {
+          width: 100px;
+          height: 100px;
+        }
+        .surprise-5 {
+          width: 70px;
+          height: 70px;
+        }
+        .surprise-6 {
+          width: 85px;
+          height: 85px;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- SPLASH SCREEN -->
     <div class="splash-screen" id="splashScreen">
-        <div class="splash-title">💕 Untuk Della 💕</div>
-        <div class="splash-subtitle">Klik untuk memulai</div>
-        <button class="start-button" id="startButton">Mulai ❤️</button>
+      <div class="splash-title">💕 Untuk Della 💕</div>
+      <div class="splash-subtitle">Klik untuk memulai</div>
+      <button class="start-button" id="startButton">Mulai ❤️</button>
     </div>
 
     <canvas id="starfield"></canvas>
 
     <!-- SURPRISE PHOTO GALLERY -->
     <div class="surprise-gallery" id="surpriseGallery">
-        <div class="surprise-photo surprise-1">
-            <img src="assets/images/1.jpeg" alt="Memory 1" loading="lazy">
-        </div>
-        <div class="surprise-photo surprise-2">
-            <img src="assets/images/2.jpeg" alt="Memory 2" loading="lazy">
-        </div>
-        <div class="surprise-photo surprise-3">
-            <img src="assets/images/3.jpeg" alt="Memory 3" loading="lazy">
-        </div>
-        <div class="surprise-photo surprise-4">
-            <img src="assets/images/4.jpeg" alt="Memory 4" loading="lazy">
-        </div>
-        <div class="surprise-photo surprise-5">
-            <img src="assets/images/5.jpeg" alt="Memory 5" loading="lazy">
-        </div>
-        <div class="surprise-photo surprise-6">
-            <img src="assets/images/6.jpeg" alt="Memory 6" loading="lazy">
-        </div>
+      <div class="surprise-photo surprise-1">
+        <img src="assets/images/1.jpeg" alt="Memory 1" loading="lazy" />
+      </div>
+      <div class="surprise-photo surprise-2">
+        <img src="assets/images/2.jpeg" alt="Memory 2" loading="lazy" />
+      </div>
+      <div class="surprise-photo surprise-3">
+        <img src="assets/images/3.jpeg" alt="Memory 3" loading="lazy" />
+      </div>
+      <div class="surprise-photo surprise-4">
+        <img src="assets/images/4.jpeg" alt="Memory 4" loading="lazy" />
+      </div>
+      <div class="surprise-photo surprise-5">
+        <img src="assets/images/5.jpeg" alt="Memory 5" loading="lazy" />
+      </div>
+      <div class="surprise-photo surprise-6">
+        <img src="assets/images/6.jpeg" alt="Memory 6" loading="lazy" />
+      </div>
     </div>
 
     <!-- THANK YOU OVERLAY -->
     <div class="thank-you-overlay" id="thankYouOverlay">
-        <div class="thank-you-text">Terimakasih sudah sampai disini 💕</div>
-        <div class="thank-you-subtitle">Until we meet again Del! 🌟</div>
+      <div class="thank-you-text">Terimakasih sudah sampai disini 💕</div>
+      <div class="thank-you-subtitle">Until we meet again Del! 🌟</div>
     </div>
-    
+
     <!-- MUSIC CONTROLS -->
-    <button class="music-control" id="musicControl" onclick="toggleMusic()">🎵</button>
+    <button class="music-control" id="musicControl" onclick="toggleMusic()">
+      🎵
+    </button>
     <div class="music-info" id="musicInfo">🎵 Yung Kai - Blue</div>
-    
+
     <!-- AUDIO -->
     <audio id="backgroundMusic" loop preload="auto">
-        <source src="assets/yungkai.mp3" type="audio/mpeg">
-        <source src="assets/yung-kai-blue.mp3" type="audio/mpeg">
+      <source src="assets/yungkai.mp3" type="audio/mpeg" />
+      <source src="assets/yung-kai-blue.mp3" type="audio/mpeg" />
     </audio>
 
     <script>
-        console.log("🚀 Starting Valentine website for Della...");
-        
-        // GLOBAL VARIABLES
-        let musicPlaying = false;
-        let animationStarted = false;
-        let startTime = 0;
-        
-        // SPLASH SCREEN HANDLER
-        document.getElementById('startButton').addEventListener('click', function() {
-            console.log("🎬 Starting experience...");
-            
-            const splash = document.getElementById('splashScreen');
-            splash.classList.add('hide');
-            
-            startMusicAndAnimation();
-            
-            setTimeout(() => {
-                splash.style.display = 'none';
-            }, 1000);
+      console.log("🚀 Starting Valentine website for Della...");
+
+      // ANALYTICS HELPER FUNCTIONS
+      function trackEvent(action, category = "Valentine_Website", label = "") {
+        if (typeof gtag !== "undefined") {
+          gtag("event", action, {
+            event_category: category,
+            event_label: label,
+            custom_parameter: "della_valentine_site",
+          });
+          console.log(`📊 Tracked: ${category} - ${action} - ${label}`);
+        }
+      }
+
+      function trackTiming(name, value, category = "User_Engagement") {
+        if (typeof gtag !== "undefined") {
+          gtag("event", "timing_complete", {
+            name: name,
+            value: value,
+            event_category: category,
+          });
+          console.log(`⏱️ Timing tracked: ${name} = ${value}ms`);
+        }
+      }
+
+      // Track initial page load
+      trackEvent("page_loaded", "Site_Analytics", "della_valentine_landing");
+
+      // GLOBAL VARIABLES
+      let musicPlaying = false;
+      let animationStarted = false;
+      let startTime = 0;
+      let siteStartTime = Date.now();
+
+      // SPLASH SCREEN HANDLER WITH ANALYTICS
+      document
+        .getElementById("startButton")
+        .addEventListener("click", function () {
+          console.log("🎬 Starting experience...");
+
+          // Track the start button click
+          trackEvent(
+            "start_button_clicked",
+            "User_Interaction",
+            "della_experience_begin"
+          );
+
+          const splash = document.getElementById("splashScreen");
+          splash.classList.add("hide");
+
+          startMusicAndAnimation();
+
+          setTimeout(() => {
+            splash.style.display = "none";
+          }, 1000);
         });
 
-        function startMusicAndAnimation() {
-            const music = document.getElementById('backgroundMusic');
-            const musicControl = document.getElementById('musicControl');
-            const musicInfo = document.getElementById('musicInfo');
-            
-            music.play().then(() => {
-                console.log("🎵 Music started successfully!");
-                musicControl.textContent = '⏸️';
-                musicPlaying = true;
-                
-                musicInfo.classList.add('show');
-                setTimeout(() => {
-                    musicInfo.classList.remove('show');
-                }, 3000);
-                
-            }).catch(e => {
-                console.error("🎵 Music failed to start:", e);
-                musicControl.textContent = '❌';
+      function startMusicAndAnimation() {
+        const music = document.getElementById("backgroundMusic");
+        const musicControl = document.getElementById("musicControl");
+        const musicInfo = document.getElementById("musicInfo");
+
+        music
+          .play()
+          .then(() => {
+            console.log("🎵 Music started successfully!");
+            musicControl.textContent = "⏸️";
+            musicPlaying = true;
+
+            // Track music start
+            trackEvent("music_started", "Audio_Interaction", "yung_kai_blue");
+
+            musicInfo.classList.add("show");
+            setTimeout(() => {
+              musicInfo.classList.remove("show");
+            }, 3000);
+          })
+          .catch((e) => {
+            console.error("🎵 Music failed to start:", e);
+            musicControl.textContent = "❌";
+
+            // Track music failure
+            trackEvent("music_failed", "Audio_Interaction", "autoplay_blocked");
+          });
+
+        if (!animationStarted) {
+          startAnimation();
+          animationStarted = true;
+          startTime = Date.now();
+
+          // Track animation start
+          trackEvent(
+            "animation_started",
+            "User_Experience",
+            "love_story_begins"
+          );
+        }
+      }
+
+      // CANVAS SETUP
+      function resizeCanvas() {
+        const canvas = document.getElementById("starfield");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight + "px";
+      }
+
+      var canvas = document.getElementById("starfield");
+      if (!canvas) {
+        console.error("❌ Canvas not found!");
+      }
+
+      resizeCanvas();
+
+      var context = canvas.getContext("2d");
+      var stars = 500;
+      var colorrange = [0, 60, 240, 300];
+      var starArray = [];
+
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function createStars() {
+        starArray = [];
+        for (var i = 0; i < stars; i++) {
+          var x = Math.random() * canvas.width;
+          var y = Math.random() * canvas.height;
+          var radius = Math.random() * 1.5;
+          var hue = colorrange[getRandom(0, colorrange.length - 1)];
+          var sat = getRandom(50, 100);
+          var opacity = Math.random();
+          starArray.push({ x, y, radius, hue, sat, opacity });
+        }
+        console.log("✅ Created", stars, "stars");
+      }
+
+      createStars();
+
+      var textOpacity = 0;
+      var buttonCreated = false;
+      var messageTrackingState = {};
+
+      const surpriseGallery = document.getElementById("surpriseGallery");
+      const thankYouOverlay = document.getElementById("thankYouOverlay");
+
+      // ENHANCED MUSIC TOGGLE WITH ANALYTICS
+      function toggleMusic() {
+        const music = document.getElementById("backgroundMusic");
+        const musicControl = document.getElementById("musicControl");
+
+        if (musicPlaying) {
+          music.pause();
+          musicControl.textContent = "🎵";
+          musicPlaying = false;
+          console.log("🎵 Music paused");
+
+          // Track music pause
+          trackEvent("music_paused", "Audio_Interaction", "user_manual_pause");
+        } else {
+          music
+            .play()
+            .then(() => {
+              musicControl.textContent = "⏸️";
+              musicPlaying = true;
+              console.log("🎵 Music playing");
+
+              // Track music resume
+              trackEvent(
+                "music_resumed",
+                "Audio_Interaction",
+                "user_manual_play"
+              );
+            })
+            .catch((e) => {
+              console.log("🎵 Music play failed:", e);
+              alert("Tidak bisa memutar musik 🎵");
+
+              // Track music failure
+              trackEvent(
+                "music_play_failed",
+                "Audio_Interaction",
+                "manual_play_blocked"
+              );
             });
-            
-            if (!animationStarted) {
-                startAnimation();
-                animationStarted = true;
-                startTime = Date.now();
-            }
+        }
+      }
+
+      function drawStars() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (var i = 0; i < starArray.length; i++) {
+          var star = starArray[i];
+          context.beginPath();
+          context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          context.fillStyle =
+            "hsla(" +
+            star.hue +
+            ", " +
+            star.sat +
+            "%, 88%, " +
+            star.opacity +
+            ")";
+          context.fill();
+        }
+      }
+
+      function updateStars() {
+        for (var i = 0; i < starArray.length; i++) {
+          if (Math.random() > 0.99) {
+            starArray[i].opacity = Math.random();
+          }
+        }
+      }
+
+      function drawTextWithLineBreaks(lines, x, y, fontSize, lineHeight) {
+        lines.forEach((line, index) => {
+          var currentY = y + index * (fontSize + lineHeight);
+          context.strokeText(line, x, currentY);
+          context.fillText(line, x, currentY);
+        });
+      }
+
+      function getElapsedTime() {
+        return (Date.now() - startTime) / 1000; // seconds
+      }
+
+      function drawText() {
+        if (!animationStarted) return;
+
+        const elapsed = getElapsedTime();
+
+        // Responsive font size - smaller for mobile
+        var fontSize = Math.min(28, window.innerWidth / 20);
+        if (window.innerWidth <= 480) {
+          fontSize = Math.min(22, window.innerWidth / 22);
+        } else if (window.innerWidth <= 768) {
+          fontSize = Math.min(26, window.innerWidth / 21);
         }
 
-        // CANVAS SETUP
-        function resizeCanvas() {
-            const canvas = document.getElementById("starfield");
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            canvas.style.width = window.innerWidth + 'px';
-            canvas.style.height = window.innerHeight + 'px';
+        var lineHeight = 10;
+
+        context.font = `bold ${fontSize}px Comic Sans MS`;
+        context.textAlign = "center";
+
+        context.strokeStyle = "rgba(0, 0, 0, 0.9)";
+        context.lineWidth = 3;
+        context.shadowColor = "rgba(255, 105, 180, 1)";
+        context.shadowBlur = 20;
+        context.shadowOffsetX = 0;
+        context.shadowOffsetY = 0;
+
+        // TIMELINE: 2s fade in + 5s display + 2s fade out = 9s per message
+        let currentText = "";
+        let targetOpacity = 0;
+        let currentMessageId = "";
+
+        if (elapsed >= 0 && elapsed < 6) {
+          targetOpacity = 0;
+        }
+        // Message 1: Hai del! (6-15s)
+        else if (elapsed >= 4 && elapsed < 8) {
+          currentText = "Hai del!";
+          currentMessageId = "hai_del";
+          targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
+        } else if (elapsed >= 8 && elapsed < 13) {
+          currentText = "Hai del!";
+          currentMessageId = "hai_del";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 13 && elapsed < 15) {
+          currentText = "Hai del!";
+          currentMessageId = "hai_del";
+          targetOpacity = Math.max(0, 1 - (elapsed - 13) / 2); // 2s fade out
+        }
+        // Message 2: Happiness message (15-24s)
+        else if (elapsed >= 15 && elapsed < 17) {
+          currentText =
+            "Semoga kamu sedang\n\n(dan selalu) berbahagia\n\nsaat baca ini";
+          currentMessageId = "happiness_message";
+          targetOpacity = Math.min(1, (elapsed - 15) / 2); // 2s fade in
+        } else if (elapsed >= 17 && elapsed < 22) {
+          currentText =
+            "Semoga kamu sedang\n\n(dan selalu) berbahagia\n\nsaat baca ini";
+          currentMessageId = "happiness_message";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 22 && elapsed < 24) {
+          currentText =
+            "Semoga kamu sedang\n\n(dan selalu) berbahagia\n\nsaat baca ini";
+          currentMessageId = "happiness_message";
+          targetOpacity = Math.max(0, 1 - (elapsed - 22) / 2); // 2s fade out
+        }
+        // Message 3: Permission message (24-33s)
+        else if (elapsed >= 24 && elapsed < 26) {
+          currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
+          currentMessageId = "permission_message";
+          targetOpacity = Math.min(1, (elapsed - 24) / 2); // 2s fade in
+        } else if (elapsed >= 26 && elapsed < 31) {
+          currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
+          currentMessageId = "permission_message";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 31 && elapsed < 33) {
+          currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
+          currentMessageId = "permission_message";
+          targetOpacity = Math.max(0, 1 - (elapsed - 31) / 2); // 2s fade out
+        }
+        // Message 4: Lucky message (33-42s)
+        else if (elapsed >= 33 && elapsed < 35) {
+          currentText = "everyday I cannot believe\n\nhow lucky I am";
+          currentMessageId = "lucky_message";
+          targetOpacity = Math.min(1, (elapsed - 33) / 2); // 2s fade in
+        } else if (elapsed >= 35 && elapsed < 40) {
+          currentText = "everyday I cannot believe\n\nhow lucky I am";
+          currentMessageId = "lucky_message";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 40 && elapsed < 42) {
+          currentText = "everyday I cannot believe\n\nhow lucky I am";
+          currentMessageId = "lucky_message";
+          targetOpacity = Math.max(0, 1 - (elapsed - 40) / 2); // 2s fade out
+        }
+        // Message 5: Stars message (42-51s)
+        else if (elapsed >= 42 && elapsed < 44) {
+          currentText = "amongst trillions and\n\ntrillions of stars..";
+          currentMessageId = "stars_message";
+          targetOpacity = Math.min(1, (elapsed - 42) / 2); // 2s fade in
+        } else if (elapsed >= 44 && elapsed < 49) {
+          currentText = "amongst trillions and\n\ntrillions of stars..";
+          currentMessageId = "stars_message";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 49 && elapsed < 51) {
+          currentText = "amongst trillions and\n\ntrillions of stars..";
+          currentMessageId = "stars_message";
+          targetOpacity = Math.max(0, 1 - (elapsed - 49) / 2); // 2s fade out
+        }
+        // Message 6: Years message (51-60s)
+        else if (elapsed >= 51 && elapsed < 53) {
+          currentText = "and over billions of years..";
+          currentMessageId = "years_message";
+          targetOpacity = Math.min(1, (elapsed - 51) / 2); // 2s fade in
+        } else if (elapsed >= 53 && elapsed < 58) {
+          currentText = "and over billions of years..";
+          currentMessageId = "years_message";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 58 && elapsed < 60) {
+          currentText = "and over billions of years..";
+          currentMessageId = "years_message";
+          targetOpacity = Math.max(0, 1 - (elapsed - 58) / 2); // 2s fade out
+        }
+        // Message 7: Life message (60-69s)
+        else if (elapsed >= 60 && elapsed < 62) {
+          currentText =
+            "to be alive,\n\nand to share moments like this with you";
+          currentMessageId = "life_message";
+          targetOpacity = Math.min(1, (elapsed - 60) / 2); // 2s fade in
+        } else if (elapsed >= 62 && elapsed < 67) {
+          currentText =
+            "to be alive,\n\nand to share moments like this with you";
+          currentMessageId = "life_message";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 67 && elapsed < 69) {
+          currentText =
+            "to be alive,\n\nand to share moments like this with you";
+          currentMessageId = "life_message";
+          targetOpacity = Math.max(0, 1 - (elapsed - 67) / 2); // 2s fade out
+        }
+        // Message 8: Unlikely message (69-78s)
+        else if (elapsed >= 69 && elapsed < 71) {
+          currentText = "is so incredibly,\n\nunbelievably unlikely";
+          currentMessageId = "unlikely_message";
+          targetOpacity = Math.min(1, (elapsed - 69) / 2); // 2s fade in
+        } else if (elapsed >= 71 && elapsed < 76) {
+          currentText = "is so incredibly,\n\nunbelievably unlikely";
+          currentMessageId = "unlikely_message";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 76 && elapsed < 78) {
+          currentText = "is so incredibly,\n\nunbelievably unlikely";
+          currentMessageId = "unlikely_message";
+          targetOpacity = Math.max(0, 1 - (elapsed - 76) / 2); // 2s fade out
+        }
+        // Message 9: Impossible chance (78-87s)
+        else if (elapsed >= 78 && elapsed < 80) {
+          currentText =
+            "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
+          currentMessageId = "impossible_chance";
+          targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
+        } else if (elapsed >= 80 && elapsed < 85) {
+          currentText =
+            "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
+          currentMessageId = "impossible_chance";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 85 && elapsed < 87) {
+          currentText =
+            "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
+          currentMessageId = "impossible_chance";
+          targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
+        }
+        // Message 10: Feelings (87-96s)
+        else if (elapsed >= 87 && elapsed < 89) {
+          currentText =
+            "I have feelings for you,\n\nmore than all the time\n\nand space in the universe\n\ncan contain";
+          currentMessageId = "feelings_declaration";
+          targetOpacity = Math.min(1, (elapsed - 87) / 2); // 2s fade in
+        } else if (elapsed >= 89 && elapsed < 94) {
+          currentText =
+            "I have feelings for you,\n\nmore than all the time\n\nand space in the universe\n\ncan contain";
+          currentMessageId = "feelings_declaration";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 94 && elapsed < 96) {
+          currentText =
+            "I have feelings for you,\n\nmore than all the time\n\nand space in the universe\n\ncan contain";
+          currentMessageId = "feelings_declaration";
+          targetOpacity = Math.max(0, 1 - (elapsed - 94) / 2); // 2s fade out
+        }
+        // Message 11: You mean a lot to me (96-108s) - DRAMATIC version
+        else if (elapsed >= 96 && elapsed < 98) {
+          currentText = "You mean so much to me..\n\nlike a lot..";
+          currentMessageId = "dramatic_meaning";
+          targetOpacity = Math.min(1, (elapsed - 96) / 2); // 2s fade in
+        } else if (elapsed >= 98 && elapsed < 106) {
+          currentText = "You mean so much to me..\n\nlike a lot..";
+          currentMessageId = "dramatic_meaning";
+          targetOpacity = 1; // 8s display
+        } else if (elapsed >= 106 && elapsed < 108) {
+          currentText = "You mean so much to me..\n\nlike a lot..";
+          currentMessageId = "dramatic_meaning";
+          targetOpacity = Math.max(0, 1 - (elapsed - 106) / 2); // 2s fade out
+        }
+        // Message 12: Research message (108-117s)
+        else if (elapsed >= 108 && elapsed < 110) {
+          currentText =
+            "Anw tahukah kamu,\n\nriset menunjukkan orang\n\nyang keseringan duduk,\n\n98% mengalami kesemutan";
+          currentMessageId = "research_joke";
+          targetOpacity = Math.min(1, (elapsed - 108) / 2); // 2s fade in
+        } else if (elapsed >= 110 && elapsed < 115) {
+          currentText =
+            "Anw tahukah kamu,\n\nriset menunjukkan orang\n\nyang keseringan duduk,\n\n98% mengalami kesemutan";
+          currentMessageId = "research_joke";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 115 && elapsed < 117) {
+          currentText =
+            "Anw tahukah kamu,\n\nriset menunjukkan orang\n\nyang keseringan duduk,\n\n98% mengalami kesemutan";
+          currentMessageId = "research_joke";
+          targetOpacity = Math.max(0, 1 - (elapsed - 115) / 2); // 2s fade out
+        }
+        // Message 13: Walking invitation (117-126s)
+        else if (elapsed >= 117 && elapsed < 119) {
+          currentText =
+            "Bahaya kan, makanya yuk kita jalan :)\n\nketik mau dan kirim ke whatsap hehe";
+          currentMessageId = "walking_invitation";
+          targetOpacity = Math.min(1, (elapsed - 117) / 2); // 2s fade in
+        } else if (elapsed >= 119 && elapsed < 124) {
+          currentText =
+            "Bahaya kan, makanya yuk kita jalan :)\n\nketik mau dan kirim ke whatsap hehe";
+          currentMessageId = "walking_invitation";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 124 && elapsed < 126) {
+          currentText =
+            "Bahaya kan, makanya yuk kita jalan :)\n\nketik mau dan kirim ke whatsap hehe";
+          currentMessageId = "walking_invitation";
+          targetOpacity = Math.max(0, 1 - (elapsed - 124) / 2); // 2s fade out
+        }
+        // Message 14: Signature (126-135s)
+        else if (elapsed >= 126 && elapsed < 128) {
+          currentText = "From your sincere admirer,\n\nSamuel";
+          currentMessageId = "signature";
+          targetOpacity = Math.min(1, (elapsed - 126) / 2); // 2s fade in
+        } else if (elapsed >= 128 && elapsed < 133) {
+          currentText = "From your sincere admirer,\n\nSamuel";
+          currentMessageId = "signature";
+          targetOpacity = 1; // 5s display
+        } else if (elapsed >= 133 && elapsed < 135) {
+          currentText = "From your sincere admirer,\n\nSamuel";
+          currentMessageId = "signature";
+          targetOpacity = Math.max(0, 1 - (elapsed - 133) / 2); // 2s fade out
+        } else if (elapsed >= 135) {
+          // Show button after all messages
+          if (!buttonCreated) {
+            createButton();
+            buttonCreated = true;
+          }
+          targetOpacity = 0;
         }
 
-        var canvas = document.getElementById("starfield");
-        if (!canvas) {
-            console.error("❌ Canvas not found!");
-        }
-        
-        resizeCanvas();
-
-        var context = canvas.getContext("2d");
-        var stars = 500;
-        var colorrange = [0, 60, 240, 300];
-        var starArray = [];
-
-        function getRandom(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+        // TRACK MESSAGE VIEWING (ANALYTICS)
+        if (
+          currentMessageId &&
+          targetOpacity > 0.5 &&
+          !messageTrackingState[currentMessageId]
+        ) {
+          messageTrackingState[currentMessageId] = true;
+          trackEvent("message_viewed", "Love_Story_Progress", currentMessageId);
         }
 
-        function createStars() {
-            starArray = [];
-            for (var i = 0; i < stars; i++) {
-                var x = Math.random() * canvas.width;
-                var y = Math.random() * canvas.height;
-                var radius = Math.random() * 1.5;
-                var hue = colorrange[getRandom(0, colorrange.length - 1)];
-                var sat = getRandom(50, 100);
-                var opacity = Math.random();
-                starArray.push({ x, y, radius, hue, sat, opacity });
-            }
-            console.log("✅ Created", stars, "stars");
+        // BEAT-SYNCHRONIZED PULSE EFFECT
+        const beatPulse = Math.sin(elapsed * 1.5) * 0.05 + 1; // Subtle pulse
+        const finalOpacity = targetOpacity * beatPulse;
+
+        // DRAW TEXT WITH ENHANCED EFFECTS
+        if (finalOpacity > 0 && currentText) {
+          context.fillStyle = `rgba(255, 105, 180, ${finalOpacity})`;
+
+          // Add breathing effect to shadow
+          context.shadowBlur = 20 + Math.sin(elapsed * 2) * 5;
+
+          if (currentText.includes("\n")) {
+            const lines = currentText.split("\n").filter((line) => line.trim());
+            drawTextWithLineBreaks(
+              lines,
+              canvas.width / 2,
+              canvas.height / 2 - (lines.length * fontSize) / 4,
+              fontSize,
+              lineHeight
+            );
+          } else {
+            context.strokeText(
+              currentText,
+              canvas.width / 2,
+              canvas.height / 2
+            );
+            context.fillText(currentText, canvas.width / 2, canvas.height / 2);
+          }
         }
 
-        createStars();
+        // Reset shadow
+        context.shadowColor = "transparent";
+        context.shadowBlur = 0;
+        context.shadowOffsetX = 0;
+        context.shadowOffsetY = 0;
+      }
 
-        var textOpacity = 0;
-        var buttonCreated = false;
+      function createButton() {
+        console.log("🔧 Creating surprise button with beat sync");
 
-        const surpriseGallery = document.getElementById("surpriseGallery");
-        const thankYouOverlay = document.getElementById("thankYouOverlay");
+        // Track story completion
+        const storyDuration = Date.now() - startTime;
+        trackTiming("love_story_completion", storyDuration, "User_Journey");
+        trackEvent(
+          "story_completed",
+          "Love_Story_Progress",
+          "all_messages_shown"
+        );
 
-        function toggleMusic() {
-            const music = document.getElementById('backgroundMusic');
-            const musicControl = document.getElementById('musicControl');
-            
-            if (musicPlaying) {
-                music.pause();
-                musicControl.textContent = '🎵';
-                musicPlaying = false;
-                console.log("🎵 Music paused");
-            } else {
-                music.play().then(() => {
-                    musicControl.textContent = '⏸️';
-                    musicPlaying = true;
-                    console.log("🎵 Music playing");
-                }).catch(e => {
-                    console.log("🎵 Music play failed:", e);
-                    alert("Tidak bisa memutar musik 🎵");
-                });
-            }
-        }
+        const newButton = document.createElement("button");
+        newButton.id = "valentinesButton";
+        newButton.textContent = "Klik untuk Kejutan! ❤️";
 
-        function drawStars() {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (var i = 0; i < starArray.length; i++) {
-                var star = starArray[i];
-                context.beginPath();
-                context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                context.fillStyle = "hsla(" + star.hue + ", " + star.sat + "%, 88%, " + star.opacity + ")";
-                context.fill();
-            }
-        }
-
-        function updateStars() {
-            for (var i = 0; i < starArray.length; i++) {
-                if (Math.random() > 0.99) {
-                    starArray[i].opacity = Math.random();
-                }
-            }
-        }
-
-        function drawTextWithLineBreaks(lines, x, y, fontSize, lineHeight) {
-            lines.forEach((line, index) => {
-                var currentY = y + index * (fontSize + lineHeight);
-                context.strokeText(line, x, currentY);
-                context.fillText(line, x, currentY);
-            });
-        }
-
-        function getElapsedTime() {
-            return (Date.now() - startTime) / 1000; // seconds
-        }
-
-        function drawText() {
-            if (!animationStarted) return;
-
-            const elapsed = getElapsedTime();
-            
-            // Responsive font size - smaller for mobile
-            var fontSize = Math.min(28, window.innerWidth / 20);
-            if (window.innerWidth <= 480) {
-                fontSize = Math.min(22, window.innerWidth / 22);
-            } else if (window.innerWidth <= 768) {
-                fontSize = Math.min(26, window.innerWidth / 21);
-            }
-            
-            var lineHeight = 10;
-
-            context.font = `bold ${fontSize}px Comic Sans MS`;
-            context.textAlign = "center";
-            
-            context.strokeStyle = "rgba(0, 0, 0, 0.9)";
-            context.lineWidth = 3;
-            context.shadowColor = "rgba(255, 105, 180, 1)";
-            context.shadowBlur = 20;
-            context.shadowOffsetX = 0;
-            context.shadowOffsetY = 0;
-
-            // TIMELINE: 2s fade in + 5s display + 2s fade out = 9s per message
-            let currentText = "";
-            let targetOpacity = 0;
-
-            if (elapsed >= 0 && elapsed < 6) {
-                targetOpacity = 0;
-            } 
-            // Message 1: Hai del! (6-15s)
-            else if (elapsed >= 6 && elapsed < 8) {
-                currentText = "Hai del!";
-                targetOpacity = Math.min(1, (elapsed - 6) / 2); // 2s fade in
-            }
-            else if (elapsed >= 8 && elapsed < 13) {
-                currentText = "Hai del!";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 13 && elapsed < 15) {
-                currentText = "Hai del!";
-                targetOpacity = Math.max(0, 1 - (elapsed - 13) / 2); // 2s fade out
-            }
-            // Message 2: Happiness message (15-24s)
-            else if (elapsed >= 15 && elapsed < 17) {
-                currentText = "Semoga kamu sedang\n\n(dan selalu) berbahagia\n\nsaat baca ini";
-                targetOpacity = Math.min(1, (elapsed - 15) / 2); // 2s fade in
-            }
-            else if (elapsed >= 17 && elapsed < 22) {
-                currentText = "Semoga kamu sedang\n\n(dan selalu) berbahagia\n\nsaat baca ini";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 22 && elapsed < 24) {
-                currentText = "Semoga kamu sedang\n\n(dan selalu) berbahagia\n\nsaat baca ini";
-                targetOpacity = Math.max(0, 1 - (elapsed - 22) / 2); // 2s fade out
-            }
-            // Message 3: Permission message (24-33s)
-            else if (elapsed >= 24 && elapsed < 26) {
-                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
-                targetOpacity = Math.min(1, (elapsed - 24) / 2); // 2s fade in
-            }
-            else if (elapsed >= 26 && elapsed < 31) {
-                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 31 && elapsed < 33) {
-                currentText = "Izinkan aku bilang\n\nperasaanku ke kamu";
-                targetOpacity = Math.max(0, 1 - (elapsed - 31) / 2); // 2s fade out
-            }
-            // Message 4: Lucky message (33-42s)
-            else if (elapsed >= 33 && elapsed < 35) {
-                currentText = "everyday I cannot believe\n\nhow lucky I am";
-                targetOpacity = Math.min(1, (elapsed - 33) / 2); // 2s fade in
-            }
-            else if (elapsed >= 35 && elapsed < 40) {
-                currentText = "everyday I cannot believe\n\nhow lucky I am";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 40 && elapsed < 42) {
-                currentText = "everyday I cannot believe\n\nhow lucky I am";
-                targetOpacity = Math.max(0, 1 - (elapsed - 40) / 2); // 2s fade out
-            }
-            // Message 5: Stars message (42-51s)
-            else if (elapsed >= 42 && elapsed < 44) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
-                targetOpacity = Math.min(1, (elapsed - 42) / 2); // 2s fade in
-            }
-            else if (elapsed >= 44 && elapsed < 49) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 49 && elapsed < 51) {
-                currentText = "amongst trillions and\n\ntrillions of stars..";
-                targetOpacity = Math.max(0, 1 - (elapsed - 49) / 2); // 2s fade out
-            }
-            // Message 6: Years message (51-60s)
-            else if (elapsed >= 51 && elapsed < 53) {
-                currentText = "and over billions of years..";
-                targetOpacity = Math.min(1, (elapsed - 51) / 2); // 2s fade in
-            }
-            else if (elapsed >= 53 && elapsed < 58) {
-                currentText = "and over billions of years..";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 58 && elapsed < 60) {
-                currentText = "and over billions of years..";
-                targetOpacity = Math.max(0, 1 - (elapsed - 58) / 2); // 2s fade out
-            }
-            // Message 7: Life message (60-69s)
-            else if (elapsed >= 60 && elapsed < 62) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
-                targetOpacity = Math.min(1, (elapsed - 60) / 2); // 2s fade in
-            }
-            else if (elapsed >= 62 && elapsed < 67) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 67 && elapsed < 69) {
-                currentText = "to be alive,\n\nand to share moments like this with you";
-                targetOpacity = Math.max(0, 1 - (elapsed - 67) / 2); // 2s fade out
-            }
-            // Message 8: Unlikely message (69-78s)
-            else if (elapsed >= 69 && elapsed < 71) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
-                targetOpacity = Math.min(1, (elapsed - 69) / 2); // 2s fade in
-            }
-            else if (elapsed >= 71 && elapsed < 76) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 76 && elapsed < 78) {
-                currentText = "is so incredibly,\n\nunbelievably unlikely";
-                targetOpacity = Math.max(0, 1 - (elapsed - 76) / 2); // 2s fade out
-            }
-            // Message 9: Impossible chance (78-87s)
-            else if (elapsed >= 78 && elapsed < 80) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
-                targetOpacity = Math.min(1, (elapsed - 78) / 2); // 2s fade in
-            }
-            else if (elapsed >= 80 && elapsed < 85) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 85 && elapsed < 87) {
-                currentText = "and yet.. here I am\n\ncrossing paths with you,\n\ngathering courage\n\nto get to know you";
-                targetOpacity = Math.max(0, 1 - (elapsed - 85) / 2); // 2s fade out
-            }
-            // Message 10: Feelings (87-96s)
-            else if (elapsed >= 87 && elapsed < 89) {
-                currentText = "I have feelings for you,\n\nmore than all the time\n\nand space in the universe\n\ncan contain";
-                targetOpacity = Math.min(1, (elapsed - 87) / 2); // 2s fade in
-            }
-            else if (elapsed >= 89 && elapsed < 94) {
-                currentText = "I have feelings for you,\n\nmore than all the time\n\nand space in the universe\n\ncan contain";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 94 && elapsed < 96) {
-                currentText = "I have feelings for you,\n\nmore than all the time\n\nand space in the universe\n\ncan contain";
-                targetOpacity = Math.max(0, 1 - (elapsed - 94) / 2); // 2s fade out
-            }
-            // Message 11: You mean a lot to me (96-108s) - DRAMATIC version
-            else if (elapsed >= 96 && elapsed < 98) {
-                currentText = "You mean so much to me..\n\nlike a lot..";
-                targetOpacity = Math.min(1, (elapsed - 96) / 2); // 2s fade in
-            }
-            else if (elapsed >= 98 && elapsed < 106) {
-                currentText = "You mean so much to me..\n\nlike a lot..";
-                targetOpacity = 1; // 8s display
-            }
-            else if (elapsed >= 106 && elapsed < 108) {
-                currentText = "You mean so much to me..\n\nlike a lot..";
-                targetOpacity = Math.max(0, 1 - (elapsed - 106) / 2); // 2s fade out
-            }
-            // Message 12: Research message (108-117s)
-            else if (elapsed >= 108 && elapsed < 110) {
-                currentText = "Anw tahukah kamu,\n\nriset menunjukkan orang\n\nyang keseringan duduk,\n\n98% mengalami kesemutan";
-                targetOpacity = Math.min(1, (elapsed - 108) / 2); // 2s fade in
-            }
-            else if (elapsed >= 110 && elapsed < 115) {
-                currentText = "Anw tahukah kamu,\n\nriset menunjukkan orang\n\nyang keseringan duduk,\n\n98% mengalami kesemutan";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 115 && elapsed < 117) {
-                currentText = "Anw tahukah kamu,\n\nriset menunjukkan orang\n\nyang keseringan duduk,\n\n98% mengalami kesemutan";
-                targetOpacity = Math.max(0, 1 - (elapsed - 115) / 2); // 2s fade out
-            }
-            // Message 13: Walking invitation (117-126s)
-            else if (elapsed >= 117 && elapsed < 119) {
-                currentText = "Bahaya kan, makanya yuk kita jalan :)\n\nketik mau dan kirim ke whatsap hehe";
-                targetOpacity = Math.min(1, (elapsed - 117) / 2); // 2s fade in
-            }
-            else if (elapsed >= 119 && elapsed < 124) {
-                currentText = "Bahaya kan, makanya yuk kita jalan :)\n\nketik mau dan kirim ke whatsap hehe";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 124 && elapsed < 126) {
-                currentText = "Bahaya kan, makanya yuk kita jalan :)\n\nketik mau dan kirim ke whatsap hehe";
-                targetOpacity = Math.max(0, 1 - (elapsed - 124) / 2); // 2s fade out
-            }
-            // Message 14: Signature (126-135s)
-            else if (elapsed >= 126 && elapsed < 128) {
-                currentText = "From your sincere admirer,\n\nSamuel";
-                targetOpacity = Math.min(1, (elapsed - 126) / 2); // 2s fade in
-            }
-            else if (elapsed >= 128 && elapsed < 133) {
-                currentText = "From your sincere admirer,\n\nSamuel";
-                targetOpacity = 1; // 5s display
-            }
-            else if (elapsed >= 133 && elapsed < 135) {
-                currentText = "From your sincere admirer,\n\nSamuel";
-                targetOpacity = Math.max(0, 1 - (elapsed - 133) / 2); // 2s fade out
-            }
-            else if (elapsed >= 135) {
-                // Show button after all messages
-                if (!buttonCreated) {
-                    createButton();
-                    buttonCreated = true;
-                }
-                targetOpacity = 0;
-            }
-
-            // BEAT-SYNCHRONIZED PULSE EFFECT
-            const beatPulse = Math.sin(elapsed * 1.5) * 0.05 + 1; // Subtle pulse
-            const finalOpacity = targetOpacity * beatPulse;
-
-            // DRAW TEXT WITH ENHANCED EFFECTS
-            if (finalOpacity > 0 && currentText) {
-                context.fillStyle = `rgba(255, 105, 180, ${finalOpacity})`;
-                
-                // Add breathing effect to shadow
-                context.shadowBlur = 20 + Math.sin(elapsed * 2) * 5;
-                
-                if (currentText.includes('\n')) {
-                    const lines = currentText.split('\n').filter(line => line.trim());
-                    drawTextWithLineBreaks(lines, canvas.width / 2, canvas.height / 2 - (lines.length * fontSize / 4), fontSize, lineHeight);
-                } else {
-                    context.strokeText(currentText, canvas.width / 2, canvas.height / 2);
-                    context.fillText(currentText, canvas.width / 2, canvas.height / 2);
-                }
-            }
-
-            // Reset shadow
-            context.shadowColor = "transparent";
-            context.shadowBlur = 0;
-            context.shadowOffsetX = 0;
-            context.shadowOffsetY = 0;
-        }
-
-        function createButton() {
-            console.log("🔧 Creating surprise button with beat sync");
-            
-            const newButton = document.createElement("button");
-            newButton.id = "valentinesButton";
-            newButton.textContent = "Klik untuk Kejutan! ❤️";
-            
-            newButton.style.cssText = `
+        newButton.style.cssText = `
                 position: fixed !important;
                 bottom: 80px !important;
                 left: 50% !important;
@@ -891,57 +1126,105 @@
                 animation: beatSyncButton 2s infinite !important;
                 transition: opacity 1s ease !important;
             `;
-            
-            // Fade in button smoothly
+
+        // Fade in button smoothly
+        setTimeout(() => {
+          newButton.style.opacity = "1";
+        }, 100);
+
+        newButton.addEventListener("click", (event) => {
+          console.log("❤️ Beat-synced surprise button clicked!", event);
+
+          if (newButton.textContent === "Klik untuk Kejutan! ❤️") {
+            // Track surprise button click
+            trackEvent(
+              "surprise_button_clicked",
+              "User_Interaction",
+              "photo_gallery_reveal"
+            );
+
+            newButton.textContent = "💕 Terima kasih sudah mengklik! 🥰";
+            newButton.style.background =
+              "linear-gradient(45deg, #4caf50, #8bc34a, #cddc39)";
+            newButton.style.animation = "successPulse 0.5s ease";
+
+            // Show surprise gallery immediately
             setTimeout(() => {
-                newButton.style.opacity = "1";
-            }, 100);
-            
-            newButton.addEventListener("click", (event) => {
-                console.log("❤️ Beat-synced surprise button clicked!", event);
-                
-                if (newButton.textContent === "Klik untuk Kejutan! ❤️") {
-                    newButton.textContent = "💕 Terima kasih sudah mengklik! 🥰";
-                    newButton.style.background = "linear-gradient(45deg, #4caf50, #8bc34a, #cddc39)";
-                    newButton.style.animation = "successPulse 0.5s ease";
-                    
-                    // Show surprise gallery immediately
-                    setTimeout(() => {
-                        surpriseGallery.classList.add('show');
-                        console.log("🎉 Beat-synced surprise gallery activated!");
-                        
-                        // Show thank you message after 3 seconds
-                        setTimeout(() => {
-                            thankYouOverlay.classList.add('show');
-                            console.log("💕 Thank you message displayed!");
-                        }, 7000);
-                        
-                    }, 500);
-                }
-            });
-            
-            document.body.appendChild(newButton);
-            console.log("✅ Beat-synced surprise button created");
-        }
+              surpriseGallery.classList.add("show");
+              console.log("🎉 Beat-synced surprise gallery activated!");
 
-        function draw() {
-            drawStars();
-            updateStars();
-            drawText();
-            requestAnimationFrame(draw);
-        }
+              // Track gallery shown
+              trackEvent(
+                "photo_gallery_shown",
+                "User_Experience",
+                "surprise_photos_revealed"
+              );
 
-        function startAnimation() {
-            console.log("✅ Starting animation...");
-            requestAnimationFrame(draw);
-        }
+              // Show thank you message after 7 seconds
+              setTimeout(() => {
+                thankYouOverlay.classList.add("show");
+                console.log("💕 Thank you message displayed!");
 
-        window.addEventListener("resize", function () {
-            resizeCanvas();
-            createStars();
+                // Track final completion and total time
+                const totalDuration = Date.now() - siteStartTime;
+                trackTiming(
+                  "complete_experience",
+                  totalDuration,
+                  "User_Journey"
+                );
+                trackEvent(
+                  "experience_completed",
+                  "User_Journey",
+                  "della_valentine_complete"
+                );
+              }, 7000);
+            }, 500);
+          }
         });
 
-        console.log("✅ Valentine website loaded - waiting for user interaction");
+        document.body.appendChild(newButton);
+        console.log("✅ Beat-synced surprise button created");
+      }
+
+      function draw() {
+        drawStars();
+        updateStars();
+        drawText();
+        requestAnimationFrame(draw);
+      }
+
+      function startAnimation() {
+        console.log("✅ Starting animation...");
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener("resize", function () {
+        resizeCanvas();
+        createStars();
+      });
+
+      // Track if user leaves early (bounce rate)
+      window.addEventListener("beforeunload", function () {
+        const sessionDuration = Date.now() - siteStartTime;
+        if (sessionDuration < 30000) {
+          // Less than 30 seconds
+          trackEvent("early_exit", "User_Behavior", "bounce_rate");
+        }
+        trackTiming("session_duration", sessionDuration, "User_Engagement");
+      });
+
+      // Track scroll/interaction engagement
+      let interactionTracked = false;
+      document.addEventListener("click", function () {
+        if (!interactionTracked) {
+          trackEvent("first_interaction", "User_Engagement", "engaged_user");
+          interactionTracked = true;
+        }
+      });
+
+      console.log(
+        "✅ Valentine website with Analytics loaded - waiting for user interaction"
+      );
     </script>
-</body>
+  </body>
 </html>
